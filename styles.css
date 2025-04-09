@@ -1,0 +1,86 @@
+/* Base Styles */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Typography */
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.accent {
+    color: #3b82f6; /* blue-500 */
+    font-weight: bold;
+}
+
+/* Components */
+.project-card {
+    transition: transform 0.3s ease;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+.btn-outline {
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outline:hover {
+    background-color: #f0f0f0;
+}
+
+/* Navigation */
+nav {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Sections */
+.section-dark {
+    background-color: #f5f5f5;
+}
+
+/* Skill Icons */
+.skill-icon {
+    color: #000000;
+}
+
+/* Text below icons */
+.w-24 h3 {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Responsive Grid */
+.grid-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
