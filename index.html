@@ -379,5 +379,48 @@
             });
         });
     </script>
+
+    <!-- Background Audio -->
+    <audio id="bgAudio" loop autoplay>
+        <source src="audio/Spaceship Hold.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Handle background audio
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                // Set initial volume to 50%
+                audio.volume = 0.5;
+                
+                // Handle autoplay restrictions
+                function handlePlay() {
+                    audio.play().catch(err => {
+                        console.log('Audio play failed:', err);
+                        // Show play button if autoplay fails
+                        const playBtn = document.createElement('button');
+                        playBtn.textContent = 'Play Background Music';
+                        playBtn.style.position = 'fixed';
+                        playBtn.style.bottom = '20px';
+                        playBtn.style.right = '20px';
+                        playBtn.style.zIndex = '1000';
+                        playBtn.style.padding = '10px 20px';
+                        playBtn.style.backgroundColor = '#ffffff';
+                        playBtn.style.color = '#000000';
+                        playBtn.style.border = 'none';
+                        playBtn.style.borderRadius = '5px';
+                        playBtn.style.cursor = 'pointer';
+                        playBtn.addEventListener('click', () => {
+                            audio.play();
+                            playBtn.remove();
+                        });
+                        document.body.appendChild(playBtn);
+                    });
+                }
+                
+                handlePlay();
+            }
+        });
+    </script>
 </body>
 </html>
