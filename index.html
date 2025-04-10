@@ -6,7 +6,8 @@
     <title>Brandon Pinnick - Game Designer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Custom styles should load last to override frameworks -->
+    <link rel="stylesheet" href="/styles.css?v=1.0.1" id="custom-styles">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap');
@@ -175,7 +176,7 @@
 
     <!-- Navigation -->
     <nav class="flex items-center justify-between p-6 border-b-2 border-gray-800">
-        <div class="text-2xl font-bold accent">Brandon Pinnick</div>
+        <div class="text-2xl font-bold accent test-effect">Brandon Pinnick</div>
         <div class="hidden md:flex space-x-8 items-center">
             <a href="#projects" class="hover:text-blue-400">Projects</a>
             <a href="#skills" class="hover:text-blue-400">Skills</a>
@@ -354,6 +355,8 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
+        const accentElements = document.querySelectorAll('.accent');
+
         // YouTube player instances
         const youtubePlayers = [];
         
@@ -574,38 +577,24 @@
                 return;
             }
 
-            console.log('Initializing audio...');
             audio.volume = 0.1;
             
             // More robust loading with progress tracking
             let loadTimeout;
             const MAX_LOAD_TIME = 30000; // 30 seconds max
-            
-            function reportProgress(event) {
-                if (audio.buffered.length > 0) {
-                    const loaded = audio.buffered.end(0);
-                    const duration = audio.duration;
-                    console.log(`Loaded: ${(loaded/duration*100).toFixed(1)}%`);
-                }
-            }
 
             audio.addEventListener('loadstart', () => {
-                console.log('Audio loading started');
                 loadTimeout = setTimeout(() => {
-                    console.warn('Audio loading timed out');
                     audio.src = ''; // Cancel loading
                 }, MAX_LOAD_TIME);
             });
 
-            audio.addEventListener('progress', reportProgress);
             audio.addEventListener('canplay', () => {
-                console.log('Audio ready to play');
                 clearTimeout(loadTimeout);
                 attemptPlayback();
             });
 
             audio.addEventListener('error', (e) => {
-                console.error('Audio error:', e);
                 clearTimeout(loadTimeout);
             });
             
@@ -615,7 +604,6 @@
             async function attemptPlayback() {
                 try {
                     await audio.play();
-                    console.log('Playback started successfully');
                     // Gradually unmute to avoid sudden loud sound
                     const fadeIn = setInterval(() => {
                         if (audio.volume >= 0.3) {
@@ -626,15 +614,13 @@
                         }
                     }, 100);
                 } catch (err) {
-                    console.log('Autoplay blocked, waiting for interaction');
                     const playOnInteraction = () => {
                         audio.play()
                             .then(() => {
-                                console.log('Started after interaction');
                                 audio.muted = false;
                                 document.removeEventListener('click', playOnInteraction);
                             })
-                            .catch(e => console.error('Playback failed:', e));
+                            .catch(e => {});
                     };
                     document.addEventListener('click', playOnInteraction);
                 }

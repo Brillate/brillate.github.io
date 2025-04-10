@@ -1,86 +1,46 @@
-/* Base Styles */
-body {
-    background-color: #ffffff;
-    color: #000000;
-    font-family: 'Roboto', sans-serif;
+/* Keyframes for glisten effect */
+@keyframes glisten {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(96, 165, 250, 0.8) !important;
+        opacity: 1 !important;
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(96, 165, 250, 1) !important;
+        opacity: 0.9 !important;
+    }
 }
 
-/* Typography */
-.pixel-font {
-    font-family: 'Press Start 2P', cursive;
+/* Force glisten effect to override all other styles */
+.accent, .test-effect {
+    color: #60a5fa !important;
+    font-weight: bold !important;
+    animation: glisten 1.5s ease-in-out infinite !important;
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.8) !important;
+    will-change: text-shadow, opacity !important;
+    position: relative !important;
 }
 
-.accent {
-    color: #3b82f6; /* blue-500 */
-    font-weight: bold;
+/* Add background glow for better visibility */
+.accent::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.accent:hover::after {
+    opacity: 1;
 }
 
 /* Components */
 .project-card {
     transition: transform 0.3s ease;
     background-color: #f5f5f5;
-    border: 1px solid #e0e0e0;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background-color: #333333;
-}
-
-.btn-outline {
-    border: 1px solid #000000;
-    color: #000000;
-}
-
-.btn-outline:hover {
-    background-color: #f0f0f0;
-}
-
-/* Navigation */
-nav {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-/* Sections */
-.section-dark {
-    background-color: #f5f5f5;
-}
-
-/* Skill Icons */
-.skill-icon {
-    color: #000000;
-}
-
-/* Text below icons */
-.w-24 h3 {
-    margin-top: 0.5rem;
-    text-align: center;
-}
-
-/* Responsive Grid */
-.grid-container {
-    display: grid;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
