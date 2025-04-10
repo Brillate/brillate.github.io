@@ -11,7 +11,75 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap');
         
-/* Hero Title Styles */
+        /* Initial Load Screen - Full Page Overlay */
+        #initial-load {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(0,0,0,1) 100%);
+            z-index: 9999;
+            transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Hide and fade in content */
+        body > *:not(#initial-load) {
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+            pointer-events: none;
+        }
+
+        body.loaded > *:not(#initial-load) {
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.5s;
+        }
+        
+        #initial-load.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        #click-to-start {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 4px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        #click-to-start:hover:not([disabled]) {
+            background: white;
+            color: black;
+            animation: none;
+        }
+
+        #click-to-start[disabled] {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        #click-to-start[disabled]:hover {
+            background: #555;
+        }
+        
+        /* Hero Title Styles */
 .hero-title {
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
@@ -37,6 +105,8 @@
             color: #ffffff;
             font-family: 'Roboto', sans-serif;
             position: relative;
+            min-height: 10000vh;
+            background: #000;
         }
         
         /* Ensure content appears above particles */
@@ -96,6 +166,13 @@
     </style>
 </head>
 <body>
+    <!-- Initial Load Screen -->
+    <div id="initial-load">
+        <h1 class="pixel-font" style="color: white; font-size: 2rem; margin-bottom: 1rem;">BRANDON PINNICK</h1>
+        <p class="pixel-font" style="color: white; margin-bottom: 2rem;">Game Designer Portfolio</p>
+        <button id="click-to-start">CLICK TO ENTER</button>
+    </div>
+
     <!-- Navigation -->
     <nav class="flex items-center justify-between p-6 border-b-2 border-gray-800">
         <div class="text-2xl font-bold accent">Brandon Pinnick</div>
@@ -130,13 +207,13 @@
 
     <!-- Projects Section -->
     <section id="projects" class="container mx-auto px-6 py-20">
-        <div class="max-w-6xl mx-auto">
+        <div class="w-full max-w-screen-2xl mx-auto px-8">
             <h2 class="text-3xl font-bold mb-24 text-center pixel-font">FEATURED <span class="accent">PROJECTS</span></h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <!-- Project 1 -->
-                <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="project-card p-6 rounded-xl block hover:no-underline">
-                    <div class="h-48 bg-white rounded-lg mb-4 overflow-hidden border border-gray-200">
-                        <img src="https://img.itch.zone/aW1hZ2UvMTM0OTY0MC83ODQ0MTQ0LnBuZw==/original/2%2F5Wk.png" alt="Ultimate Pizza Simulator screenshot" class="w-full h-full object-cover">
+                <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="project-card p-8 rounded-xl block hover:no-underline transform transition-all hover:scale-[1.02]">
+                    <div class="w-full aspect-video rounded-lg mb-6 overflow-hidden relative min-h-[320px]">
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/cl9o2_ggXI8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=cl9o2_ggXI8&vq=hd1080" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Ultimate Pizza Simulator</h3>
                     <p class="text-gray-400 mb-4">Pizza cooking simulator prototype</p>
@@ -148,9 +225,9 @@
                 </a>
 
                 <!-- Project 2 -->
-                <a href="https://brillate.itch.io/a-tale-of-two-hearts" target="_blank" class="project-card p-6 rounded-xl block hover:no-underline">
-                    <div class="h-48 bg-white rounded-lg mb-4 overflow-hidden border border-gray-200">
-                        <img src="https://img.itch.zone/aW1hZ2UvMTI5NDU0OS83NTQ0OTQ1LnBuZw==/original/3%2Fm%2B5k.png" alt="A Tale of Two Hearts screenshot" class="w-full h-full object-cover">
+                <a href="https://brillate.itch.io/a-tale-of-two-hearts" target="_blank" class="project-card p-8 rounded-xl block hover:no-underline transform transition-all hover:scale-[1.02]">
+                    <div class="w-full aspect-video rounded-lg mb-6 overflow-hidden relative min-h-[320px]">
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI&vq=hd1080" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-xl font-bold mb-2">A Tale of Two Hearts</h3>
                     <p class="text-gray-400 mb-4">Top-down pixel adventure prototype</p>
@@ -161,10 +238,10 @@
                     </div>
                 </a>
 
-                <!-- Project 3 -->
-                <a href="https://brillate.itch.io/lockdown" target="_blank" class="project-card p-6 rounded-xl block hover:no-underline">
-                    <div class="h-48 bg-white rounded-lg mb-4 overflow-hidden border border-gray-200">
-                        <img src="https://img.itch.zone/aW1hZ2UvMTE4NzY0Mi82OTk0MTQ0LnBuZw==/original/3%2Fm%2B5k.png" alt="LOCKDOWN screenshot" class="w-full h-full object-cover">
+                <!-- Project 3 - TEMPORARY VIDEO EMBED -->
+                <a href="https://brillate.itch.io/lockdown" target="_blank" class="project-card p-8 rounded-xl block hover:no-underline transform transition-all hover:scale-[1.02]">
+                    <div class="w-full aspect-video rounded-lg mb-6 overflow-hidden relative min-h-[320px]">
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/rsjU3Z0Xisg?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=rsjU3Z0Xisg&vq=hd1080" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-xl font-bold mb-2">LOCKDOWN</h3>
                     <p class="text-gray-400 mb-4">Third-person shooter prototype</p>
@@ -262,18 +339,128 @@
     </footer>
 
     <!-- Particle Background -->
-    <canvas id="particles" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-10; background:black; pointer-events:none;"></canvas>
+    <canvas id="particles" style="position:fixed; top:0; left:0; width:100%; height:10000vh; z-index:-10; background:black; pointer-events:none;"></canvas>
     
+    <style>
+        .youtube-embed {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover .youtube-embed {
+            transform: scale(1.02);
+        }
+    </style>
+
+    <!-- Load YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('particles');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+        // YouTube player instances
+        const youtubePlayers = [];
+        
+        // Called when YouTube API is ready
+        function onYouTubeIframeAPIReady() {
+            document.querySelectorAll('.youtube-embed').forEach((iframe, index) => {
+                const player = new YT.Player(iframe, {
+                    events: {
+                        'onReady': (event) => onPlayerReady(event, index)
+                    }
+                });
+                youtubePlayers.push(player);
+            });
+        }
+
+        // Called when each player is ready
+        function onPlayerReady(event, index) {
+            const card = event.target.a.parentElement.parentElement;
             
-            // Set canvas to full window size
+            // Play on hover
+            card.addEventListener('mouseenter', () => {
+                event.target.mute();
+                event.target.playVideo();
+            });
+            
+            // Pause on mouse leave
+            card.addEventListener('mouseleave', () => {
+                event.target.pauseVideo();
+                event.target.seekTo(0);
+            });
+        }
+
+        // Initial load handler
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize load screen elements
+            const initialLoad = document.getElementById('initial-load');
+            const clickToStart = document.getElementById('click-to-start');
+            
+            // Initialize canvas with safety checks
+            const canvas = document.getElementById('particles');
+            if (!canvas) {
+                console.error('Particle canvas not found');
+                initialLoad.remove();
+                return;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+                console.error('Could not get canvas context');
+                initialLoad.remove();
+                return;
+            }
+            
+            // Disable interaction initially
+            canvas.style.pointerEvents = 'none';
+            
+            // Add subtle pulse animation to button
+            clickToStart.style.animation = 'pulse 2s infinite';
+            
+            // Handle click to start
+            // Set initial body state
+            document.body.classList.add('loading');
+            
+            clickToStart.addEventListener('click', function() {
+                // Try to play click sound (silent if missing)
+                try {
+                    const clickSound = new Audio('audio/click.mp3');
+                    clickSound.volume = 0.3;
+                    clickSound.play().catch(() => {});
+                } catch (e) {}
+                
+                // Disable button and show loading state
+                clickToStart.disabled = true;
+                clickToStart.style.cursor = 'wait';
+                clickToStart.textContent = 'LOADING...';
+                clickToStart.style.animation = 'none';
+                
+                // Fade out initial load screen
+                initialLoad.classList.add('hidden');
+                
+                // Mark body as loaded
+                document.body.classList.remove('loading');
+                document.body.classList.add('loaded');
+                
+                // Enable mouse interaction with particles
+                canvas.style.pointerEvents = 'auto';
+                
+                // Start main audio playback
+                if (typeof attemptPlayback === 'function') {
+                    attemptPlayback();
+                }
+                
+                // Remove initial load screen after fade completes
+                setTimeout(() => {
+                    initialLoad.remove();
+                    // Dispatch custom event for any other components
+                    document.dispatchEvent(new Event('initComplete'));
+                }, 1500);
+            });
+            
+            // Set canvas width to window width but keep height at viewport height
+            // This prevents stretching while maintaining the extended background
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            
+            // Store original viewport height for particle calculations
+            const viewportHeight = window.innerHeight;
             
             // Particle array
             const particles = [];
@@ -340,11 +527,19 @@
                     p.x += p.speedX;
                     p.y += p.speedY;
                     
-                    // Wrap around edges
+                    // Wrap around edges (x-axis only)
                     if (p.x > canvas.width + p.size) p.x = -p.size;
                     if (p.x < -p.size) p.x = canvas.width + p.size;
-                    if (p.y > canvas.height + p.size) p.y = -p.size;
-                    if (p.y < -p.size) p.y = canvas.height + p.size;
+                    
+                    // Vertical bounds checking (don't wrap, just bounce)
+                    if (p.y > viewportHeight + p.size) {
+                        p.y = viewportHeight - p.size;
+                        p.speedY *= -0.8; // Bounce with some energy loss
+                    }
+                    if (p.y < -p.size) {
+                        p.y = p.size;
+                        p.speedY *= -0.8;
+                    }
                     
                     // Draw particle
                     ctx.beginPath();
@@ -366,19 +561,83 @@
     </script>
 
     <!-- Background Audio -->
-    <audio id="bgAudio" loop autoplay>
-        <source src="http://deathboy.anti-goth.com/ambient/Spaceship%20Hold%20%28deep%20space%20flight%29%20-%20deathboy.mp3" type="audio/mpeg">
+    <audio id="bgAudio" loop>
+        <source src="audio/Spaceship Hold.mp3" type="audio/mpeg">
+        <source src="audio/space-ambient.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Handle background audio
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const audio = document.getElementById('bgAudio');
-            if (audio) {
-                // Set initial volume to 30% (lower for background music)
-                audio.volume = 0.3;
-                // Force autoplay
-                audio.play().catch(() => {})t 
+            if (!audio) {
+                console.error('Audio element not found');
+                return;
+            }
+
+            console.log('Initializing audio...');
+            audio.volume = 0.1;
+            
+            // More robust loading with progress tracking
+            let loadTimeout;
+            const MAX_LOAD_TIME = 30000; // 30 seconds max
+            
+            function reportProgress(event) {
+                if (audio.buffered.length > 0) {
+                    const loaded = audio.buffered.end(0);
+                    const duration = audio.duration;
+                    console.log(`Loaded: ${(loaded/duration*100).toFixed(1)}%`);
+                }
+            }
+
+            audio.addEventListener('loadstart', () => {
+                console.log('Audio loading started');
+                loadTimeout = setTimeout(() => {
+                    console.warn('Audio loading timed out');
+                    audio.src = ''; // Cancel loading
+                }, MAX_LOAD_TIME);
+            });
+
+            audio.addEventListener('progress', reportProgress);
+            audio.addEventListener('canplay', () => {
+                console.log('Audio ready to play');
+                clearTimeout(loadTimeout);
+                attemptPlayback();
+            });
+
+            audio.addEventListener('error', (e) => {
+                console.error('Audio error:', e);
+                clearTimeout(loadTimeout);
+            });
+            
+            // Start muted to satisfy autoplay policies
+            audio.muted = true;
+            
+            async function attemptPlayback() {
+                try {
+                    await audio.play();
+                    console.log('Playback started successfully');
+                    // Gradually unmute to avoid sudden loud sound
+                    const fadeIn = setInterval(() => {
+                        if (audio.volume >= 0.3) {
+                            audio.muted = false;
+                            clearInterval(fadeIn);
+                        } else {
+                            audio.volume += 0.05;
+                        }
+                    }, 100);
+                } catch (err) {
+                    console.log('Autoplay blocked, waiting for interaction');
+                    const playOnInteraction = () => {
+                        audio.play()
+                            .then(() => {
+                                console.log('Started after interaction');
+                                audio.muted = false;
+                                document.removeEventListener('click', playOnInteraction);
+                            })
+                            .catch(e => console.error('Playback failed:', e));
+                    };
+                    document.addEventListener('click', playOnInteraction);
+                }
             }
         });
     </script>
