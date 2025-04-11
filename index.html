@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Brandon Pinnick - Game Designer Portfolio</title>
+    <title>Brandon Pinnick's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom styles should load last to override frameworks -->
@@ -11,6 +11,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap');
+        .text-xxs {
+            font-size: 0.6rem;
+            line-height: 0.75rem;
+        }
         
         /* Initial Load Screen - Full Page Overlay */
         #initial-load {
@@ -25,7 +29,11 @@
             align-items: center;
             background: radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(0,0,0,1) 100%);
             z-index: 9999;
-            transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
 
         /* Hide and fade in content */
@@ -172,8 +180,8 @@
 <body>
     <!-- Initial Load Screen -->
     <div id="initial-load">
-        <h1 class="pixel-font" style="color: white; font-size: 2rem; margin-bottom: 1rem; width: 100%; text-align: center; padding: 0 1rem;">BRANDON PINNICK</h1>
-        <p class="pixel-font" style="color: white; margin-bottom: 2rem;">Game Designer Portfolio</p>
+        <h1 class="pixel-font" style="color: white; font-size: 2rem; margin-bottom: 1rem; width: 100%; text-align: center; padding: 0 1rem;">BRANDON PINNICK'S</h1>
+        <p class="pixel-font" style="color: white; margin-bottom: 2rem;">Portfolio</p>
         <button id="click-to-start">CLICK TO ENTER</button>
     </div>
 
@@ -192,7 +200,7 @@
     <section class="container mx-auto px-6 py-32">
         <div class="max-w-4xl mx-auto text-center">
                 <div class="hero-title">
-                    <div class="title-line">GAME</div>
+                    <div class="title-line">MR.GAME</div>
                     <div class="title-line"><span class="accent">DESIGNER</span></div>
                 </div>
             <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
@@ -215,7 +223,7 @@
             <h2 class="text-3xl font-bold mb-12 sm:mb-24 text-center pixel-font">FEATURED <span class="accent">PROJECTS</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2 justify-items-center">
                 <!-- Project 1 -->
-                <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="project-card p-1.5 sm:p-2.5 rounded-xl block hover:no-underline">
+                <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
                     <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
                         <div class="youtube-thumbnail-container">
                             <img src="https://img.youtube.com/vi/cl9o2_ggXI8/maxresdefault.jpg" 
@@ -224,19 +232,30 @@
                                  alt="Ultimate Pizza Simulator" class="youtube-thumbnail">
                             <div class="play-button"></div>
                         </div>
-                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/cl9o2_ggXI8?enablejsapi=1&autoplay=1&mute=0&controls=1" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/cl9o2_ggXI8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=cl9o2_ggXI8" data-src="https://www.youtube.com/embed/cl9o2_ggXI8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=cl9o2_ggXI8" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-lg font-bold mb-1">Ultimate Pizza Simulator</h3>
                     <p class="text-gray-400 mb-1 text-sm">Pizza cooking simulator prototype</p>
-                    <div class="flex flex-wrap gap-1">
-                        <span class="px-2 py-1 bg-gray-200 text-black rounded-full text-sm">Unity</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">C#</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">Strategy</span>
+                    <div class="flex flex-wrap gap-2 mb-16">
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
+                        </span>
+                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Unity.svg" class="w-4 h-4" alt="Unity"> Unity
+                        </span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">C#</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Simulation</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Strategy</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
                     </div>
-                </a>
+                    <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
+                        Play
+                    </a>
+                </div>
 
                 <!-- Project 2 -->
-                <a href="https://brillate.itch.io/a-tale-of-two-hearts" target="_blank" class="project-card p-1.5 sm:p-2.5 rounded-xl block hover:no-underline">
+                <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
                     <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
                         <div class="youtube-thumbnail-container">
                             <img src="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg" 
@@ -245,37 +264,59 @@
                                  alt="A Tale of Two Hearts" class="youtube-thumbnail">
                             <div class="play-button"></div>
                         </div>
-                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=1&mute=1&controls=1" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI" data-src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-lg font-bold mb-1">A Tale of Two Hearts</h3>
                     <p class="text-gray-400 mb-1 text-sm">Top-down pixel adventure prototype</p>
-                    <div class="flex flex-wrap gap-1">
-                        <span class="px-2 py-1 bg-gray-200 text-black rounded-full text-sm">Godot</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">GDScript</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">Adventure</span>
+                    <div class="flex flex-wrap gap-2 mb-16">
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
+                        </span>
+                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Godot Engine.svg" class="w-4 h-4" alt="Godot"> Godot
+                        </span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">GDScript</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Adventure</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">2D</span>
                     </div>
-                </a>
+                    <a href="https://brillate.itch.io/a-tale-of-two-hearts" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
+                        Play
+                    </a>
+                </div>
 
-                <!-- Project 3 - TEMPORARY VIDEO EMBED -->
-                <a href="https://brillate.itch.io/lockdown" target="_blank" class="project-card p-1.5 sm:p-2.5 rounded-xl block hover:no-underline">
+                <!-- Project 3 -->
+                <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
                     <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
                         <div class="youtube-thumbnail-container">
-                            <img src="https://img.youtube.com/vi/rsjU3Z0Xisg/maxresdefault.jpg" 
-                                 data-src-desktop="https://img.youtube.com/vi/rsjU3Z0Xisg/maxresdefault.jpg"
-                                 data-src-mobile="https://img.youtube.com/vi/rsjU3Z0Xisg/hqdefault.jpg"
+                            <img src="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg" 
+                                 data-src-desktop="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg"
+                                 data-src-mobile="https://img.youtube.com/vi/MDRP8c0eXSQ/hqdefault.jpg"
                                  alt="LOCKDOWN" class="youtube-thumbnail">
                             <div class="play-button"></div>
                         </div>
-                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/rsjU3Z0Xisg?enablejsapi=1&autoplay=1&mute=1&controls=1" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="https://www.youtube.com/embed/MDRP8c0eXSQ?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=MDRP8c0eXSQ" data-src="https://www.youtube.com/embed/MDRP8c0eXSQ?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=MDRP8c0eXSQ" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-lg font-bold mb-1">LOCKDOWN</h3>
                     <p class="text-gray-400 mb-1 text-sm">Third-person shooter prototype</p>
-                    <div class="flex flex-wrap gap-1">
-                        <span class="px-2 py-1 bg-gray-200 text-black rounded-full text-sm">Unreal</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">Blueprints</span>
-                        <span class="px-3 py-1 bg-gray-200 text-black rounded-full text-sm">Shooter</span>
+                    <div class="flex flex-wrap gap-2 mb-16">
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
+                        </span>
+                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                            <img src="icons/Unreal Engine.svg" class="w-4 h-4" alt="Unreal"> Unreal
+                        </span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Blueprints</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Shooter</span>
+                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
                     </div>
-                </a>
+                    <a href="https://brillate.itch.io/lockdown" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
+                        Play
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -310,6 +351,30 @@
                     <h3 class="font-bold text-black">Java</h3>
                 </div>
                 <div class="text-center w-24 bg-white p-2 rounded-lg">
+                    <div class="mb-3">
+                        <img src="icons/HTML5.png" class="custom-icon" alt="HTML5">
+                    </div>
+                    <h3 class="font-bold text-black">HTML</h3>
+                </div>
+                <div class="text-center w-24 bg-white p-2 rounded-lg">
+                    <div class="mb-3">
+                        <img src="icons/CSS3.png" class="custom-icon" alt="CSS3">
+                    </div>
+                    <h3 class="font-bold text-black">CSS</h3>
+                </div>
+                <div class="text-center w-24 bg-white p-2 rounded-lg">
+                    <div class="mb-3">
+                        <img src="icons/Visual%20Studio%20Code%20(VS%20Code).png" class="custom-icon" alt="VS Code">
+                    </div>
+                    <h3 class="font-bold text-black">VS Code</h3>
+                </div>
+                <div class="text-center w-24 bg-white p-2 rounded-lg">
+                    <div class="mb-3">
+                        <img src="icons/Rider.png" class="custom-icon" alt="Rider">
+                    </div>
+                    <h3 class="font-bold text-black">Rider</h3>
+                </div>
+                <div class="text-center w-24 bg-white p-2 rounded-lg">
                     <img src="icons/Blender.png" class="custom-icon" alt="Blender">
                     <h3 class="font-bold text-black">Blender</h3>
                 </div>
@@ -318,6 +383,12 @@
                         <img src="icons/Adobe Photoshop.png" class="custom-icon" alt="Adobe Photoshop">
                     </div>
                     <h3 class="font-bold text-black">Photoshop</h3>
+                </div>
+                <div class="text-center w-24 bg-white p-2 rounded-lg">
+                    <div class="mb-3">
+                        <img src="icons/Adobe%20Premiere%20Pro.png" class="custom-icon" alt="Premiere Pro">
+                    </div>
+                    <h3 class="font-bold text-black">Premiere Pro</h3>
                 </div>
             </div>
         </div>
@@ -368,6 +439,7 @@
 
     <!-- Load YouTube IFrame API -->
     <script src="https://www.youtube.com/iframe_api"></script>
+    
     <!-- YouTube Thumbnail Optimizer -->
     <script src="/scripts/youtube-optimizer.js"></script>
 
@@ -389,14 +461,48 @@
             });
         }
 
+        // Track animation state
+        let animationRunning = true;
+        let animationId = null;
+
         // Called when each player is ready
         function onPlayerReady(event, index) {
             // Don't autoplay - let user click to play
             event.target.unMute();
+            
+            // Get the iframe element
+            const iframe = event.target.getIframe();
+            
+            // Pause particles when video starts playing
+            event.target.addEventListener('onStateChange', (e) => {
+                if (e.data === YT.PlayerState.PLAYING) {
+                    if (animationRunning) {
+                        cancelAnimationFrame(animationId);
+                        animationRunning = false;
+                    }
+                }
+            });
+
+            // Resume particles when clicking outside iframe
+            document.addEventListener('click', (e) => {
+                const clickedOnIframe = e.target.closest('iframe.youtube-embed');
+                if (!clickedOnIframe && !animationRunning) {
+                    animationId = requestAnimationFrame(animate);
+                    animationRunning = true;
+                }
+            });
         }
 
         // Initial load handler
         document.addEventListener('DOMContentLoaded', function() {
+            // Resume particles when clicking outside iframes
+            document.addEventListener('click', (e) => {
+                const clickedOnIframe = e.target.closest('iframe.youtube-embed');
+                if (!clickedOnIframe && !animationRunning) {
+                    animationId = requestAnimationFrame(animate);
+                    animationRunning = true;
+                }
+            });
             // Initialize load screen elements
             const initialLoad = document.getElementById('initial-load');
             const clickToStart = document.getElementById('click-to-start');
@@ -422,11 +528,13 @@
             // Add subtle pulse animation to button
             clickToStart.style.animation = 'pulse 2s infinite';
             
-            // Handle click to start
             // Set initial body state
             document.body.classList.add('loading');
             
-            clickToStart.addEventListener('click', function() {
+            function startTransition() {
+                // Only run once
+                if (document.body.classList.contains('loaded')) return;
+                
                 // Try to play click sound (silent if missing)
                 try {
                     const clickSound = new Audio('audio/click.mp3');
@@ -434,18 +542,23 @@
                     clickSound.play().catch(() => {});
                 } catch (e) {}
                 
-                // Disable button and show loading state
-                clickToStart.disabled = true;
-                clickToStart.style.cursor = 'wait';
-                clickToStart.textContent = 'LOADING...';
-                clickToStart.style.animation = 'none';
+                // Disable button and show loading state if button exists
+                if (clickToStart) {
+                    clickToStart.disabled = true;
+                    clickToStart.style.cursor = 'wait';
+                    clickToStart.textContent = 'LOADING...';
+                    clickToStart.style.animation = 'none';
+                }
                 
                 // Fade out initial load screen
                 initialLoad.classList.add('hidden');
                 
-                // Mark body as loaded
-                document.body.classList.remove('loading');
-                document.body.classList.add('loaded');
+                // Delay adding the loaded class to allow fade-out to complete
+                setTimeout(() => {
+                    // Mark body as loaded
+                    document.body.classList.remove('loading');
+                    document.body.classList.add('loaded');
+                }, 1500); // Match the fade-out duration
                 
                 // Enable mouse interaction with particles
                 canvas.style.pointerEvents = 'auto';
@@ -461,7 +574,14 @@
                     // Dispatch custom event for any other components
                     document.dispatchEvent(new Event('initComplete'));
                 }, 1500);
-            });
+            }
+            
+            // Handle all interaction types
+            clickToStart.addEventListener('click', startTransition);
+            document.addEventListener('keydown', startTransition);
+            document.addEventListener('scroll', startTransition);
+            document.addEventListener('mousedown', startTransition);
+            document.addEventListener('touchstart', startTransition);
             
             // Set canvas width to window width but keep height at viewport height
             // This prevents stretching while maintaining the extended background
@@ -471,13 +591,16 @@
             // Store original viewport height for particle calculations
             const viewportHeight = window.innerHeight;
             
-            // Particle array
-            const particles = [];
-            const particleCount = 200;
+            // ======================
+            // WHITE PARTICLE SYSTEM
+            // ======================
+            const whiteParticles = [];
+            const whiteParticleCount = 500;
             
-            // Create particles
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
+            // Create white particles (stretched vertically)
+            for (let i = 0; i < whiteParticleCount; i++) {
+                whiteParticles.push({
+                    type: 'white',
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     size: Math.random() * 4 + 2,
@@ -486,12 +609,31 @@
                     opacity: Math.random() * 0.5 + 0.5
                 });
             }
+
+            // ======================
+            // BLACK PARTICLE SYSTEM (vertically compressed)
+            // ======================
+            const blackParticles = [];
+            const blackParticleCount = 2000; // Increased particle count
+            
+            // Create black particles (vertically compressed, overlapping white)
+            for (let i = 0; i < blackParticleCount; i++) {
+                blackParticles.push({
+                    type: 'black',
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() * 4 - 2) * 0.5,
+                    speedY: (Math.random() * 4 - 2) * 0.5,
+                    opacity: Math.random() * 0.3 + 0.5
+                });
+            }
             
             // Enhanced mouse tracking with stronger effects
             const mouse = {
                 x: null,
                 y: null,
-                radius: 300  // Increased interaction radius
+                radius: 550  // Increased interaction radius for more noticeable effect
             };
             
             function trackMouse(e) {
@@ -509,57 +651,94 @@
             
             // Animation loop
             function animate() {
+                if (!animationRunning) return;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                // Draw particles
-                particles.forEach(p => {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                
+                function updateParticle(p, isBlackParticle = false) {
                     
-                    // Enhanced mouse interaction
+                    // MOUSE INTERACTION (both types)
                     if (mouse.x !== null && mouse.y !== null) {
                         const dx = p.x - mouse.x;
                         const dy = p.y - mouse.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
                         if (distance < mouse.radius) {
-                            const force = (mouse.radius - distance) / 15;  // Stronger force
+                            const force = (mouse.radius - distance) / 15;
                             const angle = Math.atan2(dy, dx);
-                            p.x += Math.cos(angle) * force * 3;  // More movement
+                            p.x += Math.cos(angle) * force * 3;
                             p.y += Math.sin(angle) * force * 3;
-                            
-                            // Visual feedback - make particles brighter when repelled
-                            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(p.opacity + 0.3, 1)})`;
-                        } else {
-                            ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
                         }
                     }
-                    // Update position
+                    
+                    // POSITION UPDATE
                     p.x += p.speedX;
                     p.y += p.speedY;
                     
-                    // Wrap around edges (x-axis only)
+                    // X-axis wrapping (both types)
                     if (p.x > canvas.width + p.size) p.x = -p.size;
                     if (p.x < -p.size) p.x = canvas.width + p.size;
                     
-                    // Vertical bounds checking (don't wrap, just bounce)
+                    // Y-axis bounds (both types)
                     if (p.y > viewportHeight + p.size) {
                         p.y = viewportHeight - p.size;
-                        p.speedY *= -0.8; // Bounce with some energy loss
+                        p.speedY *= -0.8;
                     }
                     if (p.y < -p.size) {
                         p.y = p.size;
                         p.speedY *= -0.8;
                     }
                     
-                    // Draw particle
+                    // PARTICLE RENDERING
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
+                    if (isBlackParticle) {
+                        // Save current transform state
+                        ctx.save();
+                        // Reset transform to identity matrix
+                        ctx.setTransform(1, 0, 0, 1, 0, 0);
+                        // Calculate position relative to viewport
+                        const viewportY = p.y % window.innerHeight;
+                        // Draw vertically compressed black particles
+                        const verticalScale = 4; // % of original height (more compressed)
+                        ctx.ellipse(p.x, viewportY, p.size, p.size * verticalScale, 0, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(0, 0, 0, ${p.opacity})`; // Black color
+                        ctx.fill();
+                        // Restore transform state
+                        ctx.restore();
+                    } else {
+                        // White particles - stretched vertically
+                        ctx.arc(p.x, p.y, p.size / 4, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                        ctx.fill();
+                    }
+                    
+                    // Ensure black particles always overlap white
+                    if (isBlackParticle) {
+                        ctx.globalCompositeOperation = 'source-over';
+                    }
+                }
+
+                // ===================================
+                // DRAW WHITE PARTICLES (BACKGROUND)
+                // ===================================
+                whiteParticles.forEach(p => {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                    updateParticle(p);
                 });
                 
-                requestAnimationFrame(animate);
+                    // ===================================
+                    // DRAW BLACK PARTICLES (vertically compressed)
+                    // Always drawn on top of white particles
+                    // ===================================
+                    blackParticles.forEach(p => {
+                        ctx.fillStyle = `rgba(0, 0, 0, ${p.opacity})`; // Black color
+                        updateParticle(p, true); // true = is black particle
+                    });
+                
+                animationId = requestAnimationFrame(animate);
             }
             
-            animate();
+            // Start animation
+            animationId = requestAnimationFrame(animate);
             
             // Handle window resize
             window.addEventListener('resize', function() {
