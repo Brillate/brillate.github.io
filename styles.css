@@ -31,6 +31,8 @@ body {
     position: relative;
 }
 
+/* Removed original shine effect styles for .project-card.shine-effect */
+
 .project-card h3 {
     color: white;
 }
@@ -215,6 +217,7 @@ body {
     cursor: pointer;
     background-color: transparent;
 }
+
 
 .youtube-container {
     position: relative;
