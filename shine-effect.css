@@ -1,8 +1,6 @@
 .project-card.shine-effect {
     position: relative;
     overflow: visible;
-    margin: 0.5rem;
-    padding: 1rem;
     box-sizing: border-box;
     isolation: isolate; /* create a new stacking context to prevent stretching issues */
     border: 2px solid transparent;
