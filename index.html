@@ -6,592 +6,384 @@
     <title>Brandon Pinnick's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Custom styles should load last to override frameworks -->
-    <link rel="stylesheet" href="/styles.css?v=1.0.1" id="custom-styles">
-    <link rel="stylesheet" href="/shine-effect.css" id="shine-effect-styles">
+    <link rel="stylesheet" href="/styles.css?v=1.0.2" id="custom-styles">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap');
-        .text-xxs {
-            font-size: 0.6rem;
-            line-height: 0.75rem;
-        }
-        
-        /* Initial Load Screen - Full Page Overlay */
-        #initial-load {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(0,0,0,1) 100%);
-            z-index: 9999;
-            transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-            will-change: opacity;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-
-        /* Hide and fade in content */
-        body > *:not(#initial-load) {
-            opacity: 0;
-            transition: opacity 0.8s ease-out;
-            pointer-events: none;
-        }
-
-        body.loaded > *:not(#initial-load) {
-            opacity: 1;
-            pointer-events: auto;
-            transition-delay: 0.5s;
-        }
-        
-        #initial-load.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        #click-to-start {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 4px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        #click-to-start:hover:not([disabled]) {
-            background: white;
-            color: black;
-            animation: none;
-        }
-
-        #click-to-start[disabled] {
-            background: #555;
-            cursor: not-allowed;
-        }
-
-        #click-to-start[disabled]:hover {
-            background: #555;
-        }
-        
-        /* Hero Title Styles */
-.hero-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .hero-title {
-        font-size: 4.5rem;
-    }
-}
-
-@media (max-width: 767px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-}
-
-.title-line {
-    display: block;
-    margin-bottom: 1rem;
-}
-
-        /* Base Styles */
-        body {
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            position: relative;
-            min-height: auto;
-            background: #000;
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-        
-        /* Ensure content appears above particles */
-        body > *:not(#particles) {
-            position: relative;
-        }
-        
-        .pixel-font {
-            font-family: 'Press Start 2P', cursive;
-        }
-        
-        .accent {
-            color: #ffffff;
-            font-weight: bold;
-        }
-        
-        .project-card {
-            background-color: #111111;
-            border: 1px solid #333333;
-        }
-        
-        .btn-primary {
-            background-color: #ffffff;
-            color: #000000;
-        }
-        
-        .btn-primary:hover {
-            background-color: #cccccc;
-        }
-        
-        .btn-outline {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-        }
-        
-        .btn-outline:hover {
-            background-color: #333333;
-        }
-        
-        nav {
-            border-bottom: 1px solid #333333;
-        }
-        
-        .section-dark {
-            background-color: #111111;
-        }
-        
-        .skill-icon {
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
     <!-- Initial Load Screen -->
     <div id="initial-load">
-        <h1 class="pixel-font" style="color: white; font-size: 2rem; margin-bottom: 1rem; width: 100%; text-align: center; padding: 0 1rem;">BRANDON PINNICK'S</h1>
-        <p class="pixel-font" style="color: white; margin-bottom: 2rem;">Portfolio</p>
-        <button id="click-to-start">CLICK TO ENTER</button>
+        <h1 class="pixel-font">BRANDON PINNICK'S</h1>
+        <p class="pixel-font">PORTFOLIO</p>
+        <button id="click-to-start" class="pixel-font">ENTER</button>
     </div>
 
-    <!-- Navigation -->
-    <nav class="flex items-center justify-between p-6 border-b-2 border-gray-800">
-        <div class="text-2xl font-bold accent test-effect">Brandon Pinnick</div>
-        <div class="hidden md:flex space-x-8 items-center">
-            <a href="#projects" class="hover:text-blue-400">Projects</a>
-            <a href="#skills" class="hover:text-blue-400">Skills</a>
-            <a href="#about" class="hover:text-blue-400">About</a>
-            <a href="#contact" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500">Contact</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="container mx-auto px-6 py-32">
-        <div class="max-w-4xl mx-auto text-center">
-                <div class="hero-title">
-                    <div class="title-line">MR.GAME</div>
-                    <div class="title-line"><span class="accent">DESIGNER</span></div>
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="min-h-screen text-white">
+            <!-- Navigation -->
+            <nav class="flex items-center justify-center p-6 border-b-2 border-gray-800">
+                <div class="hidden md:flex space-x-8 items-center justify-center w-full max-w-2xl">
+                    <a href="https://brillate.itch.io/" target="_blank" class="hover:text-blue-400">Projects</a>
+                    <a href="#skills" class="hover:text-blue-400">Skills</a>
+                    <a href="#about" class="hover:text-blue-400">About</a>
+                    <a href="#contact" class="hover:text-blue-400">Contact</a>
                 </div>
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                Creating immersive gaming experiences through innovative design and technical expertise.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#projects" class="px-8 py-4 btn-primary font-medium rounded-md">
-                    View Projects
-                </a>
-                <a href="#contact" class="px-8 py-4 btn-outline font-medium rounded-md">
-                    Get In Touch
-                </a>
-            </div>
-        </div>
-    </section>
+            </nav>
 
-    <!-- Projects Section -->
-    <section id="projects" class="w-full px-4 py-20">
-        <div class="w-full max-w-md mx-auto sm:max-w-6xl">
-            <h2 class="text-3xl font-bold mb-12 sm:mb-24 text-center pixel-font">FEATURED <span class="accent">PROJECTS</span></h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2 justify-items-center">
-                <!-- Project 1 -->
-                <div class="project-card shine-effect p-1.5 sm:p-2.5 rounded-xl relative">
-                    <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
-                    <div class="youtube-thumbnail-container">
-                        <img src="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg" 
-                             data-src-desktop="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg"
-                             data-src-mobile="https://img.youtube.com/vi/mjMKx7hRJx8/hqdefault.jpg"
-                             alt="Ultimate Pizzeria Simulator" class="youtube-thumbnail">
-                        <div class="play-button"></div>
-                    </div>
-                    <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/mjMKx7hRJx8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=mjMKx7hRJx8" frameborder="0" allowfullscreen style="display:none;"></iframe>
-                    </div>
-                    <h3 class="text-lg font-bold mb-1">Ultimate Pizzeria Simulator</h3>
-                    <p class="text-gray-400 mb-1 text-sm">Pizzeria simulator prototype</p>
-                    <div class="flex flex-wrap gap-2 mb-16">
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">WebGL</span>
-                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                            <img src="icons/Unity.svg" class="w-4 h-4" alt="Unity"> Unity
-                        </span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">C#</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Simulation</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Strategy</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
-                    </div>
-                    <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
-                        Play
-                    </a>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
-                    <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
-                        <div class="youtube-thumbnail-container">
-                            <img src="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg" 
-                                 data-src-desktop="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg"
-                                 data-src-mobile="https://img.youtube.com/vi/Wkt_exczaiI/hqdefault.jpg"
-                                 alt="A Tale of Two Hearts" class="youtube-thumbnail">
-                            <div class="play-button"></div>
+            <!-- Hero Section -->
+            <section class="container mx-auto px-6 py-32">
+                <div class="max-w-4xl mx-auto text-center">
+                        <div class="hero-title">
+                            <div class="title-line">MR.GAME</div>
+                            <div class="title-line"><span class="accent">DEVELOPER</span></div>
                         </div>
-                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                    <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                        Creating immersive gaming experiences through innovative design and technical expertise.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="https://brillate.itch.io/" target="_blank" class="px-8 py-4 btn-primary font-medium rounded-md">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="px-8 py-4 btn-outline font-medium rounded-md">
+                            Get In Touch
+                        </a>
                     </div>
-                    <h3 class="text-lg font-bold mb-1">A Tale of Two Hearts</h3>
-                    <p class="text-gray-400 mb-1 text-sm">Top-down pixel adventure prototype</p>
-                    <div class="flex flex-wrap gap-2 mb-16">
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                            <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
-                        </span>
-                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                            <img src="icons/Godot Engine.svg" class="w-4 h-4" alt="Godot"> Godot
-                        </span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">GDScript</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Adventure</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">2D</span>
-                    </div>
-                    <a href="https://brillate.itch.io/a-tale-of-two-hearts" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
-                        Play
-                    </a>
                 </div>
+            </section>
 
-                <!-- Project 3 -->
-                <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
-                    <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
-                        <div class="youtube-thumbnail-container">
-                            <img src="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg" 
-                                 data-src-desktop="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg"
-                                 data-src-mobile="https://img.youtube.com/vi/MDRP8c0eXSQ/hqdefault.jpg"
-                                 alt="LOCKDOWN" class="youtube-thumbnail">
-                            <div class="play-button"></div>
+            <!-- Projects Section -->
+            <section id="projects" class="w-full px-4 py-20">
+                <div class="w-full max-w-md mx-auto sm:max-w-6xl">
+                    <h2 class="text-3xl font-bold mb-12 sm:mb-24 text-center pixel-font">FEATURED <span class="accent">PROJECTS</span></h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2 justify-items-center">
+                        <!-- Project 1 -->
+                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
+                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
+                            <div class="youtube-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg" 
+                                     data-src-desktop="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg"
+                                     data-src-mobile="https://img.youtube.com/vi/mjMKx7hRJx8/hqdefault.jpg"
+                                     alt="Ultimate Pizzeria Simulator" class="youtube-thumbnail">
+                                <div class="play-button"></div>
+                            </div>
+                            <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/mjMKx7hRJx8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=mjMKx7hRJx8" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                            </div>
+                            <h3 class="text-lg font-bold mb-1">Ultimate Pizzeria Simulator</h3>
+                            <p class="text-gray-400 mb-1 text-sm">Pizzeria simulator prototype</p>
+                            <div class="flex flex-wrap gap-2 mb-16">
+                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                                    <img src="icons/Unity.svg" class="w-4 h-4" alt="Unity"> Unity
+                                </span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">C#</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Simulation</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Strategy</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
+                            </div>
+                            <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
+                                Play
+                            </a>
                         </div>
-                        <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/MDRP8c0eXSQ?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=MDRP8c0eXSQ" frameborder="0" allowfullscreen style="display:none;"></iframe>
-                    </div>
-                    <h3 class="text-lg font-bold mb-1">LOCKDOWN</h3>
-                    <p class="text-gray-400 mb-1 text-sm">Third-person shooter prototype</p>
-                    <div class="flex flex-wrap gap-2 mb-16">
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                            <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
-                        </span>
-                        <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                            <img src="icons/Unreal Engine.svg" class="w-4 h-4" alt="Unreal"> Unreal
-                        </span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Blueprints</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Indie</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Shooter</span>
-                        <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
-                    </div>
-                    <a href="https://brillate.itch.io/lockdown" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
-                        Play
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="container mx-auto px-8 py-20 section-dark">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-24 text-center pixel-font">TECHNICAL <span class="accent">SKILLS</span></h2>
-            <div class="flex flex-wrap justify-center gap-8">
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Unity.png" class="custom-icon" alt="Java">
-                    <h3 class="font-bold text-black">Unity</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/Unreal Engine.png" class="custom-icon" alt="Unreal Engine">
-                    </div>
-                    <h3 class="font-bold text-black">Unreal</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Godot Engine.png" class="custom-icon" alt="Godot Engine">
-                    <h3 class="font-bold text-black">Godot</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/C%23%20(CSharp).png" class="custom-icon" alt="C# Programming Language">
-                    </div>
-                    <h3 class="font-bold text-black">C#</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Java.png" class="custom-icon" alt="Java">
-                    <h3 class="font-bold text-black">Java</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/HTML5.png" class="custom-icon" alt="HTML5">
-                    </div>
-                    <h3 class="font-bold text-black">HTML</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/CSS3.png" class="custom-icon" alt="CSS3">
-                    </div>
-                    <h3 class="font-bold text-black">CSS</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/Visual%20Studio%20Code%20(VS%20Code).png" class="custom-icon" alt="VS Code">
-                    </div>
-                    <h3 class="font-bold text-black">VS Code</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/Rider.png" class="custom-icon" alt="Rider">
-                    </div>
-                    <h3 class="font-bold text-black">Rider</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Eclipse IDE.png" class="custom-icon" alt="Eclipse IDE">
-                    <h3 class="font-bold text-black">Eclipse IDE</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Git.png" class="custom-icon" alt="Git">
-                    <h3 class="font-bold text-black">Git</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/GitHub.png" class="custom-icon" alt="GitHub">
-                    <h3 class="font-bold text-black">GitHub</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/Adobe Photoshop.png" class="custom-icon" alt="Adobe Photoshop">
-                    </div>
-                    <h3 class="font-bold text-black">Photoshop</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <div class="mb-3">
-                        <img src="icons/Adobe%20Premiere%20Pro.png" class="custom-icon" alt="Premiere Pro">
-                    </div>
-                    <h3 class="font-bold text-black">Premiere Pro</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Blender.png" class="custom-icon" alt="Blender">
-                    <h3 class="font-bold text-black">Blender</h3>
-                </div>
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/Figma.png" class="custom-icon" alt="Figma">
-                    <h3 class="font-bold text-black">Figma</h3>
-                </div>
-                <!--
-                <div class="text-center w-24 bg-white p-2 rounded-lg">
-                    <img src="icons/MySQL.png" class="custom-icon" alt="MySQL">
-                    <h3 class="font-bold text-black">MySQL</h3>
-                </div>
-                -->
-            </div>
-        </div>
-    </section>
+                        <!-- Project 2 -->
+                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
+                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
+                                <div class="youtube-thumbnail-container">
+                                    <img src="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg" 
+                                         data-src-desktop="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg"
+                                         data-src-mobile="https://img.youtube.com/vi/Wkt_exczaiI/hqdefault.jpg"
+                                         alt="A Tale of Two Hearts" class="youtube-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                                <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                            </div>
+                            <h3 class="text-lg font-bold mb-1">A Tale of Two Hearts</h3>
+                            <p class="text-gray-400 mb-1 text-sm">Top-down pixel adventure prototype</p>
+                            <div class="flex flex-wrap gap-2 mb-16">
+                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                                    <img src="icons/Godot Engine.svg" class="w-4 h-4" alt="Godot"> Godot
+                                </span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                                    <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
+                                </span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Adventure</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">2D</span>
+                            </div>
+                            <button disabled class="absolute bottom-3 right-3 bg-gray-500/80 cursor-not-allowed text-gray-300 rounded-full px-20 py-1.5 flex items-center justify-center text-sm">
+                                Play
+                            </button>
+                        </div>
 
-    <!-- About Section -->
-    <section id="about" class="container mx-auto px-6 py-20">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-24 text-center pixel-font">ABOUT <span class="accent">ME</span></h2>
-            <div class="flex flex-col md:flex-row gap-8 items-center">
-                <div class="w-full md:w-1/3">
-                    <div class="rounded-full w-48 h-48 mx-auto overflow-hidden border-4 border-white">
-                        <img src="icons/unnamed.jpg" alt="Brandon Pinnick" class="w-full h-full object-cover">
+                        <!-- Project 3 -->
+                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
+                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
+                                <div class="youtube-thumbnail-container">
+                                    <img src="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg" 
+                                         data-src-desktop="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg"
+                                         data-src-mobile="https://img.youtube.com/vi/MDRP8c0eXSQ/hqdefault.jpg"
+                                         alt="LOCKDOWN" class="youtube-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                                <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/MDRP8c0eXSQ?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=MDRP8c0eXSQ" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                            </div>
+                            <h3 class="text-lg font-bold mb-1">LOCKDOWN</h3>
+                            <p class="text-gray-400 mb-1 text-sm">Third-person shooter prototype</p>
+                            <div class="flex flex-wrap gap-2 mb-16">
+                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                                    <img src="icons/Unreal Engine.svg" class="w-4 h-4" alt="Unreal"> Unreal
+                                </span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
+                                    <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
+                                </span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Shooter</span>
+                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
+                            </div>
+                            <a href="https://brillate.itch.io/lockdown" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
+                                Play
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="w-full md:w-2/3">
-                    <p class="text-lg mb-4">
-                        Hi, I'm Brandon Pinnick! A passionate game designer with 2 years of experience creating gaming experiences.
-                    </p>
-                    <p class="text-gray-400">
-                        I specialize in <b>Unity, Unreal,</b> and <b>Godot</b> development, with expertise in programming gameplay mechanics, using blueprints, coding in C#, level designing, and 3D modeling using <b>Blender.</b> My work focuses on creating fun and well polished player experiences.
-                    </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="container mx-auto px-8 pt-12 pb-20 section-dark">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-24 text-center pixel-font">TECHNICAL <span class="accent">SKILLS</span></h2>
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Unity.png" class="custom-icon" alt="Java">
+                            <h3 class="font-bold text-black">Unity</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/Unreal Engine.png" class="custom-icon" alt="Unreal Engine">
+                            </div>
+                            <h3 class="font-bold text-black">Unreal</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Godot Engine.png" class="custom-icon" alt="Godot Engine">
+                            <h3 class="font-bold text-black">Godot</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/C%23%20(CSharp).png" class="custom-icon" alt="C# Programming Language">
+                            </div>
+                            <h3 class="font-bold text-black">C#</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Java.png" class="custom-icon" alt="Java">
+                            <h3 class="font-bold text-black">Java</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/HTML5.png" class="custom-icon" alt="HTML5">
+                            </div>
+                            <h3 class="font-bold text-black">HTML</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/CSS3.png" class="custom-icon" alt="CSS3">
+                            </div>
+                            <h3 class="font-bold text-black">CSS</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/Visual%20Studio%20Code%20(VS%20Code).png" class="custom-icon" alt="VS Code">
+                            </div>
+                            <h3 class="font-bold text-black">VS Code</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/Rider.png" class="custom-icon" alt="Rider">
+                            </div>
+                            <h3 class="font-bold text-black">Rider</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Eclipse IDE.png" class="custom-icon" alt="Eclipse IDE">
+                            <h3 class="font-bold text-black">Eclipse IDE</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Git.png" class="custom-icon" alt="Git">
+                            <h3 class="font-bold text-black">Git</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/GitHub.png" class="custom-icon" alt="GitHub">
+                            <h3 class="font-bold text-black">GitHub</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/Adobe Photoshop.png" class="custom-icon" alt="Adobe Photoshop">
+                            </div>
+                            <h3 class="font-bold text-black">Photoshop</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <div class="mb-3">
+                                <img src="icons/Adobe%20Premiere%20Pro.png" class="custom-icon" alt="Premiere Pro">
+                            </div>
+                            <h3 class="font-bold text-black">Premiere Pro</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Blender.png" class="custom-icon" alt="Blender">
+                            <h3 class="font-bold text-black">Blender</h3>
+                        </div>
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/Figma.png" class="custom-icon" alt="Figma">
+                            <h3 class="font-bold text-black">Figma</h3>
+                        </div>
+                        <!--
+                        <div class="text-center w-24 bg-white p-2 rounded-lg">
+                            <img src="icons/MySQL.png" class="custom-icon" alt="MySQL">
+                            <h3 class="font-bold text-black">MySQL</h3>
+                        </div>
+                        -->
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container mx-auto px-6 py-20 section-dark">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-6 pixel-font">GET IN <span class="accent">TOUCH </span><span class="accent">WITH ME</span></h2>
-            <p class="text-gray-400 mb-8">Interested in working with me? Don't be afraid to reach out!</p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/brandon-pinnick/" target="_blank" class="text-2xl hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Brillate" target="_blank" class="text-2xl hover:text-blue-400"><i class="fab fa-github"></i></a>
-                <a href="mailto:brandonpinnick0643@gmail.com" class="text-2xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </section>
+            <!-- About Section -->
+            <section id="about" class="container mx-auto px-6 py-20">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-24 text-center pixel-font">ABOUT <span class="accent">ME</span></h2>
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-full md:w-1/3">
+                            <div class="rounded-full w-48 h-48 mx-auto overflow-hidden border-4 border-white">
+                                <img src="icons/unnamed.jpg" alt="Brandon Pinnick" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <p class="text-lg mb-4">
+                                I'm Brandon Pinnick, a dedicated and passionate game developer with over <span class="accent">2 years</span> of experience creating immersive gaming experiences.
+                            </p>
+                            <!-- Add a divider here -->
+                            <div class="h-px w-full bg-gray-700 my-4"></div>
+                            <p class="text-gray-400">
+                                I specialize in working with <span class="accent">Unity, Unreal Engine,</span> and <span class="accent">Godot,</span> leveraging my skills in programming, 3D modeling, and level design to bring my unique game worlds to life.
+                            </p>
+                            <!-- Add a divider here -->
+                            <div class="h-px w-full bg-gray-700 my-4"></div>
+                            <p class="text-gray-400">
+                                My journey is driven by a strong commitment to crafting fun, well-polished gameplay experiences that resonates with players. Whether it's building detailed environments, designing compelling mechanics, or prototyping new ideas, I combine creativity and technical know-how to deliver projects that stand out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Footer -->
-    <footer class="py-8 text-center text-gray-500 text-sm">
-        <p>© 2023 Brandon Pinnick.</p>
-    </footer>
+            <!-- Contact Section -->
+            <section id="contact" class="container mx-auto px-6 py-20 section-dark">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-6 pixel-font">GET IN <span class="accent">TOUCH </span><span class="accent">WITH ME</span></h2>
+                    <p class="text-gray-400 mb-8">Interested? Please reach out!</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.linkedin.com/in/brandon-pinnick/" target="_blank" class="text-3xl hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Brillate" target="_blank" class="text-3xl hover:text-blue-400"><i class="fab fa-github"></i></a>
+                        <a href="mailto:brandonpinnick0643@gmail.com" class="text-3xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="py-8 text-center text-gray-500 text-sm">
+                <p>© 2025 Brandon Pinnick.</p>
+            </footer>
+        </div>
+    </div>
 
     <!-- Particle Background -->
-<canvas id="particles" style="position:fixed; top:0; left:0; width:100%; height:10000vh; z-index:-10; background:black; pointer-events:none;"></canvas>
+    <canvas id="particles"></canvas>
+
+    <!-- Font Loading Detection -->
+    <script>
+        // Use FontFaceObserver to detect when our custom font has loaded
+        if ('FontFace' in window) {
+            Promise.all([
+                document.fonts.load('1em "Press Start 2P"')
+            ]).then(() => {
+                document.documentElement.classList.add('fonts-loaded');
+            }).catch(err => {
+                console.error('Font loading failed:', err);
+                // Add the class anyway to show the fallback font
+                document.documentElement.classList.add('fonts-loaded');
+            });
+        } else {
+            // Fallback for browsers that don't support FontFace API
+            // Add the class after a short delay
+            setTimeout(() => {
+                document.documentElement.classList.add('fonts-loaded');
+            }, 100);
+        }
+    </script>
 
     <!-- Load YouTube IFrame API -->
     <script src="https://www.youtube.com/iframe_api"></script>
     
-    <!-- YouTube Thumbnail Optimizer -->
-    <script src="/scripts/youtube-optimizer-updated.js"></script>
-
-    <script src="/scripts/particle-system.js"></script>
-
-    <!-- Background Audio -->
-    <audio id="bgAudio" loop>
-        <source src="audio/Spaceship Hold.mp3" type="audio/mpeg">
-        <source src="audio/space-ambient.mp3" type="audio/mpeg">
-    </audio>
-
+    <!-- Scripts -->
+    <script src="scripts/particle-system-new.js"></script>
+    <script src="scripts/youtube-optimizer-updated.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const audio = document.getElementById('bgAudio');
-            if (!audio) {
-                console.error('Audio element not found');
-                return;
+        // Ensure initial state is set before any content loads
+        document.body.classList.remove('loaded');
+        
+        // Reset state on page load
+        window.addEventListener('load', function() {
+            if (!window.particleSystem) {
+                console.log('Initializing particle system on window load');
+                window.particleSystem = new ParticleSystem();
+            }
+            
+            // Reset initial load screen
+            const initialLoad = document.getElementById('initial-load');
+            if (initialLoad) {
+                console.log('Resetting initial load screen');
+                initialLoad.classList.remove('hidden');
+            }
+            
+            // Reset main content
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                console.log('Resetting main content');
+                document.body.classList.remove('loaded');
+            }
+            
+            // Reset particles
+            const particles = document.getElementById('particles');
+            if (particles) {
+                console.log('Resetting particles');
+                particles.style.opacity = '0';
             }
 
-            audio.volume = 0.1;
-            
-            // More robust loading with progress tracking
-            let loadTimeout;
-            const MAX_LOAD_TIME = 30000; // 30 seconds max
-
-            audio.addEventListener('loadstart', () => {
-                loadTimeout = setTimeout(() => {
-                    audio.src = ''; // Cancel loading
-                }, MAX_LOAD_TIME);
-            });
-
-            audio.addEventListener('canplay', () => {
-                clearTimeout(loadTimeout);
-                attemptPlayback();
-            });
-
-            audio.addEventListener('error', (e) => {
-                clearTimeout(loadTimeout);
-            });
-            
-            // Start muted to satisfy autoplay policies
-            audio.muted = true;
-            
-            async function attemptPlayback() {
-                try {
-                    await audio.play();
-                    // Gradually unmute to avoid sudden loud sound
-                    const fadeIn = setInterval(() => {
-                        if (audio.volume >= 0.3) {
-                            audio.muted = false;
-                            clearInterval(fadeIn);
-                        } else {
-                            audio.volume += 0.05;
-                        }
-                    }, 100);
-                } catch (err) {
-                    const playOnInteraction = () => {
-                        audio.play()
-                            .then(() => {
-                                audio.muted = false;
-                                document.removeEventListener('click', playOnInteraction);
-                            })
-                            .catch(e => {});
-                    };
-                    document.addEventListener('click', playOnInteraction);
-                }
+            // Ensure click handler is bound
+            const clickToStart = document.getElementById('click-to-start');
+            if (clickToStart && window.particleSystem) {
+                console.log('Binding click handler to ENTER button');
+                clickToStart.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('ENTER button clicked');
+                    window.particleSystem.handleStartClick(e);
+                });
             }
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const titleLine = document.querySelector('.title-line');
-            if (!titleLine) return;
-            const prefixes = ["SIR", "MR.", "SEÑOR", "A"];
-            const suffix = " GAME";
-            let index = 0;
-            let isDeleting = false;
-            let text = "";
-            let charIndex = 0;
-            let cursorVisible = true;
 
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-
-            async function typeEffect() {
-                while (true) {
-                    const currentPrefix = prefixes[index];
-                    if (!isDeleting) {
-                        // Typing
-                        if (charIndex < currentPrefix.length) {
-                            text += currentPrefix.charAt(charIndex);
-                            charIndex++;
-                            titleLine.textContent = text + "_" + suffix;
-                            await sleep(150);
-                        } else {
-                            // Pause at full text
-                            await sleep(1000);
-                            isDeleting = true;
-                        }
-                    } else {
-                        // Deleting
-                        if (charIndex > 0) {
-                            text = text.slice(0, -1);
-                            charIndex--;
-                            titleLine.textContent = text + "_" + suffix;
-                            await sleep(100);
-                        } else {
-                            isDeleting = false;
-                            index = (index + 1) % prefixes.length;
-                            await sleep(500);
-                        }
-                    }
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').slice(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
                 }
-            }
-
-            // Cursor blinking
-            setInterval(() => {
-                if (titleLine.textContent.endsWith("_" + suffix)) {
-                    if (cursorVisible) {
-                        titleLine.textContent = titleLine.textContent.slice(0, -suffix.length - 1) + " " + suffix;
-                        cursorVisible = false;
-                    } else {
-                        titleLine.textContent = titleLine.textContent.slice(0, -suffix.length - 1) + "_" + suffix;
-                        cursorVisible = true;
-                    }
-                }
-            }, 500);
-
-            typeEffect();
+            });
         });
     </script>
- </body>
- </html>
+</body>
+</html>

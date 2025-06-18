@@ -3,7 +3,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const players = [];
     let isUserInteracting = false;
     let interactionTimeout = null;
+    let particleSystemState = {
+        wasRunning: true,
+        spawnRate: 1,
+        particleCount: 0,
+        forceDisabled: false
+    };
 
+    // Debug helper
+    const debugState = () => {
+        console.debug('Current State:', {
+            isUserInteracting,
+            particleState: {
+                ...particleSystemState,
+                currentlyRunning: window.particleSystem?.isRunning
+            },
+            activeVideos: players.filter(p => p.getPlayerState && p.getPlayerState() === YT.PlayerState.PLAYING).length,
+            fullscreen: !!document.fullscreenElement
+        });
+    };
+
+    // Restore debounce function
     const debounce = (func, delay) => {
         let timer;
         return (...args) => {
@@ -12,26 +32,81 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const setUserInteracting = debounce(() => {
-        console.debug('User interaction ended');
-        isUserInteracting = false;
-        const fullscreenElement = document.fullscreenElement;
-        const anyPlaying = players.some(player => player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING);
-        if (!anyPlaying && !fullscreenElement) {
-            console.debug('Resuming particles after interaction timeout');
-            if (window.resumeParticles) {
-                window.resumeParticles();
+    // Helper function to store particle system state
+    const storeParticleState = () => {
+        if (window.particleSystem) {
+            if (window.particleSystem.isRunning) {
+                particleSystemState.wasRunning = true;
             }
+            particleSystemState.spawnRate = window.particleSystem.spawnRate || 1;
+            particleSystemState.particleCount = window.particleSystem.particles.length;
+            debugState();
+        }
+    };
+
+    // Helper function to check if we can resume particles
+    const canResumeParticles = () => {
+        if (!window.particleSystem || !particleSystemState.wasRunning) {
+            console.debug('Cannot resume - system not initialized or was not running');
+            return false;
+        }
+
+        const anyPlaying = players.some(player => 
+            player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING
+        );
+        const isFullscreen = !!document.fullscreenElement;
+        
+        console.debug('Can resume check:', {
+            anyPlaying,
+            isFullscreen,
+            isUserInteracting,
+            forceDisabled: particleSystemState.forceDisabled,
+            wasRunning: particleSystemState.wasRunning
+        });
+        
+        return !anyPlaying && !isFullscreen && !isUserInteracting && !particleSystemState.forceDisabled;
+    };
+
+    // Enhanced particle system management
+    window.pauseParticles = () => {
+        if (!window.particleSystem) return;
+        
+        console.debug('Pausing particle system');
+        storeParticleState();
+        window.particleSystem.stop();
+        debugState();
+    };
+
+    window.resumeParticles = () => {
+        if (!window.particleSystem || !canResumeParticles()) {
+            console.debug('Cannot resume particles - conditions not met');
+            debugState();
+            return;
+        }
+        
+        console.debug('Resuming particle system');
+        window.particleSystem.start();
+        debugState();
+    };
+
+    const setUserInteracting = debounce(() => {
+        console.debug('User interaction timeout complete');
+        isUserInteracting = false;
+        if (canResumeParticles()) {
+            window.resumeParticles();
         }
     }, 2000);
 
-    const onUserInteraction = () => {
+    const onUserInteraction = (e) => {
+        // Ignore interactions with links or within YouTube embeds
+        if (e && e.target && (e.target.closest('a') || e.target.closest('iframe.youtube-embed'))) {
+            return;
+        }
+
         if (!isUserInteracting) {
-            console.debug('User interacting with YouTube embed');
+            console.debug('User started interacting');
             isUserInteracting = true;
-            if (window.pauseParticles) {
-                window.pauseParticles();
-            }
+            window.pauseParticles();
         }
         setUserInteracting();
     };
@@ -61,64 +136,51 @@ document.addEventListener('DOMContentLoaded', () => {
             let playerInitialized = false;
             let player;
 
-            ['mousemove', 'keydown', 'click'].forEach(eventName => {
-                iframe.addEventListener(eventName, onUserInteraction);
-            });
-
             const onClickHandler = () => {
+                console.debug('Video thumbnail clicked');
+                particleSystemState.forceDisabled = true;
                 container.style.display = 'none';
                 iframe.style.display = 'block';
 
                 if (iframe.src === 'about:blank') {
+                    console.debug('Loading video iframe:', iframe.dataset.src);
                     iframe.src = iframe.dataset.src;
                 }
 
                 if (!playerInitialized) {
+                    console.debug('Initializing YouTube player');
                     player = new YT.Player(iframe, {
                         events: {
                             'onReady': (event) => {
+                                console.debug('YouTube player ready');
                                 event.target.mute();
                                 event.target.setVolume(0);
                             },
                             'onStateChange': (event) => {
+                                console.debug('YouTube player state changed:', event.data);
                                 if (event.data === YT.PlayerState.PLAYING) {
-                                    console.debug('YouTube video playing - pausing particles');
-                                    if (window.pauseParticles) {
-                                        window.pauseParticles();
-                                    }
-                                }
-                                // Removed resume on pause to prevent particle system resuming on video pause
-                                /*
-                                else if (event.data === YT.PlayerState.PAUSED) {
-                                    console.debug('YouTube video paused');
-                                    if (!isUserInteracting) {
-                                        if (window.resumeParticles) {
-                                            window.resumeParticles();
-                                        }
-                                    }
-                                }
-                                */
-                                else if (event.data === YT.PlayerState.BUFFERING) {
-                                    const fullscreenElement = document.fullscreenElement;
-                                    if (fullscreenElement && fullscreenElement.tagName === 'IFRAME' && fullscreenElement.classList.contains('youtube-embed')) {
-                                        const player = event.target;
-                                        const currentTime = player.getCurrentTime();
-                                        player.seekTo(currentTime, true);
-                                        player.playVideo();
+                                    particleSystemState.forceDisabled = true;
+                                    window.pauseParticles();
+                                } else if (event.data === YT.PlayerState.ENDED || 
+                                         event.data === YT.PlayerState.PAUSED) {
+                                    particleSystemState.forceDisabled = false;
+                                    if (canResumeParticles()) {
+                                        window.resumeParticles();
                                     }
                                 }
                             },
                             'onError': (event) => {
                                 console.error('YouTube Player error:', event.data);
+                                particleSystemState.forceDisabled = false;
+                                if (canResumeParticles()) {
+                                    window.resumeParticles();
+                                }
                             }
                         }
                     });
                     playerInitialized = true;
                     players.push(player);
                 }
-
-                container.removeEventListener('click', onClickHandler);
-                container.removeEventListener('keydown', onKeyDownHandler);
             };
 
             const onKeyDownHandler = (e) => {
@@ -128,47 +190,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
+            // Add event listeners to container
             container.addEventListener('click', onClickHandler);
             container.addEventListener('keydown', onKeyDownHandler);
             container.setAttribute('tabindex', '0');
             container.setAttribute('role', 'button');
             container.setAttribute('aria-label', 'Play YouTube video');
+
+            // Add event listeners to iframe
+            ['mousemove', 'keydown', 'click'].forEach(eventName => {
+                iframe.addEventListener(eventName, onUserInteraction);
+            });
         });
     };
 
-    const handleFullscreenChange = () => {
-        const fullscreenElement = document.fullscreenElement;
-        if (fullscreenElement && fullscreenElement.tagName === 'IFRAME' && fullscreenElement.classList.contains('youtube-embed')) {
-            console.debug('Entered fullscreen on YouTube embed');
-            const playerInFullscreen = players.find(player => player.getIframe() === fullscreenElement);
-            if (playerInFullscreen && playerInFullscreen.getPlayerState() === YT.PlayerState.PLAYING) {
-                console.debug('Fullscreen video is playing - pausing particles');
-                if (window.pauseParticles) {
-                    window.pauseParticles();
-                }
-            }
-        } else {
-            console.debug('Exited fullscreen');
-            const anyPlaying = players.some(player => player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING);
-            if (!anyPlaying && !isUserInteracting) {
-                if (window.resumeParticles) {
-                    console.debug('Resuming particles after exiting fullscreen');
-                    window.resumeParticles();
-                }
-            }
-        }
-    };
-
-    document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-
+    // Handle clicks outside YouTube embeds
     document.addEventListener('click', (e) => {
-        const clickedOnIframe = e.target.closest('iframe.youtube-embed');
-        if (!clickedOnIframe && !isUserInteracting) {
-            console.debug('Clicked outside YouTube embed - resuming particles');
-            if (window.resumeParticles) {
+        // Ignore clicks on links, within YouTube embeds, or any interactive elements
+        if (e.target.closest('a') || 
+            e.target.closest('iframe.youtube-embed') || 
+            e.target.closest('button') ||
+            e.target.closest('[role="button"]')) {
+            return;
+        }
+        
+        console.debug('Clicked outside interactive elements');
+        particleSystemState.forceDisabled = false;
+        if (canResumeParticles()) {
+            window.resumeParticles();
+        }
+    });
+
+    // Handle fullscreen changes
+    document.addEventListener('fullscreenchange', () => {
+        const fullscreenElement = document.fullscreenElement;
+        if (!fullscreenElement) {
+            console.debug('Exited fullscreen');
+            particleSystemState.forceDisabled = false;
+            if (canResumeParticles()) {
                 window.resumeParticles();
             }
+        }
+    });
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            window.pauseParticles();
+        } else if (canResumeParticles()) {
+            window.resumeParticles();
+        }
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', () => {
+        if (window.particleSystem) {
+            console.debug('Initializing particle system state');
+            particleSystemState.wasRunning = true;
+            particleSystemState.spawnRate = window.particleSystem.spawnRate || 1;
+            particleSystemState.particleCount = window.particleSystem.particles.length;
+            particleSystemState.forceDisabled = false;
+            debugState();
         }
     });
 

@@ -1,8 +1,41 @@
+/* Initial Visibility States */
+#initial-load {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1000 !important;
+}
+
+#main-content {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: 1 !important;
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: black;
+    pointer-events: none;
+    display: none;
+    transform: translateZ(0); /* Force GPU acceleration */
+}
+
 /* Base & Reset Styles */
 html {
     box-sizing: border-box;
     width: 100vw;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: black;
+    scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -14,14 +47,180 @@ body {
     max-width: 100vw;
     overflow-x: hidden;
     position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: black !important;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Layout & Containers */
-.container {
+body.loaded {
+    overflow: auto;
+}
+
+/* Initial Load Screen */
+#initial-load {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(0,0,0,1) 100%);
+    z-index: 1000;
+}
+
+#initial-load h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+#initial-load p {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    #initial-load h1 {
+        font-size: 1rem;
+    }
+    
+    #initial-load p {
+        font-size: 1rem;
+    }
+}
+
+#initial-load.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Main Content Container */
+#main-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
+    overflow-y: auto;
+    background: transparent;
+}
+
+body.loaded #main-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2 !important;
+}
+
+/* Particles Canvas */
+body.loaded #particles {
+    display: block !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+    pointer-events: auto !important; /* Enable mouse events */
+}
+
+/* Click to Start Button */
+#click-to-start {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 4px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+#click-to-start:hover:not([disabled]) {
+    background: white;
+    color: black;
+    animation: none;
+}
+
+#click-to-start[disabled] {
+    background: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Hero Title Styles */
+.hero-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.title-line {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Utility Classes */
+.text-xxs {
+    font-size: 0.6rem;
+    line-height: 0.75rem;
+}
+
+.pixel-font {
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* When fonts are loaded, this class will be added by JavaScript */
+.fonts-loaded .pixel-font {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+.accent {
+    color: #60a5fa;
+    font-weight: bold;
+    animation: glisten 1.5s ease-in-out infinite;
+    will-change: text-shadow, opacity;
+    position: relative;
+}
+
+.accent::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+}
+
+/* Navigation */
+nav {
+    border-bottom: 1px solid #333333;
 }
 
 /* Project Cards */
@@ -31,14 +230,116 @@ body {
     position: relative;
 }
 
-/* Removed original shine effect styles for .project-card.shine-effect */
-
 .project-card h3 {
     color: white;
 }
 
 .project-card p {
     color: #aaaaaa;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background-color: #cccccc;
+}
+
+.btn-outline {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.btn-outline:hover {
+    background-color: #333333;
+}
+
+/* Section Styles */
+.section-dark {
+    background-color: #111111;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glisten {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
+        opacity: 1;
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(96, 165, 250, 1);
+        opacity: 0.9;
+    }
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        text-align: center;
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .project-card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    nav {
+        padding: 1rem;
+    }
+    
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    .youtube-embed {
+        image-rendering: pixelated;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-card {
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .project-card h3 {
+        font-size: 1.25rem;
+        margin-top: 1rem;
+    }
+    
+    .project-card p {
+        margin-bottom: 1rem;
+    }
+    
+    .project-card .flex {
+        gap: 0.5rem;
+    }
+    
+    #projects .grid {
+        gap: 1.5rem;
+    }
 }
 
 /* YouTube Thumbnail Styles */
@@ -117,95 +418,6 @@ body {
     aspect-ratio: 16/9;
 }
 
-/* Animations & Effects */
-@keyframes glisten {
-    0%, 100% {
-        text-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
-        opacity: 1;
-    }
-    50% {
-        text-shadow: 0 0 40px rgba(96, 165, 250, 1);
-        opacity: 0.9;
-    }
-}
-
-.accent, .test-effect {
-    color: #60a5fa;
-    font-weight: bold;
-    animation: glisten 1.5s ease-in-out infinite;
-    will-change: text-shadow, opacity;
-    position: relative;
-}
-
-.accent::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0;
-}
-
-/* Responsive Styles */
-@media (min-width: 1024px) {
-    .project-card {
-        padding: 1.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    
-    .project-card h3 {
-        font-size: 1.25rem;
-        margin-top: 1rem;
-    }
-    
-    .project-card p {
-        margin-bottom: 1rem;
-    }
-    
-    .project-card .flex {
-        gap: 0.5rem;
-    }
-    
-    #projects .grid {
-        gap: 1.5rem; /* sets the value for the gap between the projects */
-    }
-}
-
-@media (max-width: 767px) {
-    .hero-title {
-        font-size: 2rem;
-        line-height: 1.3;
-        margin-bottom: 1rem;
-        text-align: center;
-        width: 100%;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    
-    .project-card {
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    nav {
-        padding: 1rem;
-    }
-    
-    .container {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-    
-    .youtube-embed {
-        image-rendering: pixelated;
-    }
-}
-
 /* YouTube Overlay Styles */
 .youtube-overlay {
     position: absolute;
@@ -218,8 +430,11 @@ body {
     background-color: transparent;
 }
 
-
 .youtube-container {
     position: relative;
     display: inline-block;
+}
+
+#skills {
+    scroll-margin-top: 50px;  /* Adjust this value to control how much higher it scrolls */
 }
