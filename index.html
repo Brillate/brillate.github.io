@@ -14,41 +14,54 @@
 <body>
     <!-- Initial Load Screen -->
     <div id="initial-load">
-        <h1 class="pixel-font">BRANDON PINNICK'S</h1>
-        <p class="pixel-font">PORTFOLIO</p>
-        <button id="click-to-start" class="pixel-font">ENTER</button>
+        <div class="load-content">
+            <h1 class="pixel-font">BRANDON PINNICK'S</h1>
+            <p class="pixel-font">PORTFOLIO</p>
+            <button id="click-to-start" class="pixel-font">ENTER</button>
+        </div>
     </div>
 
     <!-- Main Content -->
     <div id="main-content">
+        <!-- Animated Starfield Background -->
+        <div id="starfield"></div>
         <div class="min-h-screen text-white">
             <!-- Navigation -->
-            <nav class="flex items-center justify-center p-6 border-b-2 border-gray-800">
-                <div class="hidden md:flex space-x-8 items-center justify-center w-full max-w-2xl">
-                    <a href="https://brillate.itch.io/" target="_blank" class="hover:text-blue-400">Projects</a>
-                    <a href="#skills" class="hover:text-blue-400">Skills</a>
-                    <a href="#about" class="hover:text-blue-400">About</a>
-                    <a href="#contact" class="hover:text-blue-400">Contact</a>
+            <nav class="main-navigation">
+                <div class="nav-container">
+                    <div class="nav-links">
+                        <a href="https://brillate.itch.io/" target="_blank" class="nav-link">
+                            <span>Projects</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
                 </div>
             </nav>
 
             <!-- Hero Section -->
-            <section class="container mx-auto px-6 py-32">
-                <div class="max-w-4xl mx-auto text-center">
+            <section class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-content">
                         <div class="hero-title">
-                            <div class="title-line">MR.GAME</div>
-                            <div class="title-line"><span class="accent">DEVELOPER</span></div>
+                            <div class="title-line" id="title-prefix">MR.GAME</div>
+                            <div class="title-line" id="title-suffix"><span class="accent">DESIGNER</span></div>
                         </div>
-                    <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                        Creating immersive gaming experiences through innovative design and technical expertise.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="https://brillate.itch.io/" target="_blank" class="px-8 py-4 btn-primary font-medium rounded-md">
-                            View Projects
-                        </a>
-                        <a href="#contact" class="px-8 py-4 btn-outline font-medium rounded-md">
-                            Get In Touch
-                        </a>
+                        <p class="hero-description">
+                            Creating immersive gaming experiences through innovative design and technical expertise.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="https://brillate.itch.io/" target="_blank" class="hero-button hero-button-primary">
+                                <span>View Projects</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#contact" class="hero-button hero-button-secondary">
+                                <span>Get In Touch</span>
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -57,38 +70,34 @@
             <section id="projects" class="w-full px-4 py-20">
                 <div class="w-full max-w-md mx-auto sm:max-w-6xl">
                     <h2 class="text-3xl font-bold mb-12 sm:mb-24 text-center pixel-font">FEATURED <span class="accent">PROJECTS</span></h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2 justify-items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-7xl mx-auto">
                         <!-- Project 1 -->
-                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
-                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
-                            <div class="youtube-thumbnail-container">
-                                <img src="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg" 
-                                     data-src-desktop="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg"
-                                     data-src-mobile="https://img.youtube.com/vi/mjMKx7hRJx8/hqdefault.jpg"
-                                     alt="Ultimate Pizzeria Simulator" class="youtube-thumbnail">
-                                <div class="play-button"></div>
+                        <div class="project-card-new group">
+                            <div class="project-media-container">
+                                <div class="youtube-thumbnail-container">
+                                    <img src="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg" 
+                                         data-src-desktop="https://img.youtube.com/vi/mjMKx7hRJx8/maxresdefault.jpg"
+                                         data-src-mobile="https://img.youtube.com/vi/mjMKx7hRJx8/hqdefault.jpg"
+                                         alt="Ultimate Pizzeria Simulator" class="youtube-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                                <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/mjMKx7hRJx8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=mjMKx7hRJx8" frameborder="0" allowfullscreen style="display:none;"></iframe>
                             </div>
-                            <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/mjMKx7hRJx8?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=mjMKx7hRJx8" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                            <div class="project-content">
+                                <h3 class="project-title">Ultimate Pizzeria Simulator</h3>
+                                <p class="project-description">Pizzeria simulator prototype</p>
+                                <div class="project-actions">
+                                    <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="project-button">
+                                        <span>Play Game</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <h3 class="text-lg font-bold mb-1">Ultimate Pizzeria Simulator</h3>
-                            <p class="text-gray-400 mb-1 text-sm">Pizzeria simulator prototype</p>
-                            <div class="flex flex-wrap gap-2 mb-16">
-                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                                    <img src="icons/Unity.svg" class="w-4 h-4" alt="Unity"> Unity
-                                </span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">C#</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Simulation</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Strategy</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
-                            </div>
-                            <a href="https://brillate.itch.io/ultimate-pizza-simulator" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
-                                Play
-                            </a>
                         </div>
 
                         <!-- Project 2 -->
-                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
-                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
+                        <div class="project-card-new group">
+                            <div class="project-media-container">
                                 <div class="youtube-thumbnail-container">
                                     <img src="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg" 
                                          data-src-desktop="https://img.youtube.com/vi/Wkt_exczaiI/maxresdefault.jpg"
@@ -98,27 +107,21 @@
                                 </div>
                                 <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/Wkt_exczaiI?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=Wkt_exczaiI" frameborder="0" allowfullscreen style="display:none;"></iframe>
                             </div>
-                            <h3 class="text-lg font-bold mb-1">A Tale of Two Hearts</h3>
-                            <p class="text-gray-400 mb-1 text-sm">Top-down pixel adventure prototype</p>
-                            <div class="flex flex-wrap gap-2 mb-16">
-                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                                    <img src="icons/Godot Engine.svg" class="w-4 h-4" alt="Godot"> Godot
-                                </span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                                    <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
-                                </span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Adventure</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">2D</span>
+                            <div class="project-content">
+                                <h3 class="project-title">A Tale of Two Hearts</h3>
+                                <p class="project-description">Top-down pixel adventure prototype</p>
+                                <div class="project-actions">
+                                    <button disabled class="project-button project-button-disabled">
+                                        <span>Coming Soon</span>
+                                        <i class="fas fa-clock"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <button disabled class="absolute bottom-3 right-3 bg-gray-500/80 cursor-not-allowed text-gray-300 rounded-full px-20 py-1.5 flex items-center justify-center text-sm">
-                                Play
-                            </button>
                         </div>
 
                         <!-- Project 3 -->
-                        <div class="project-card p-1.5 sm:p-2.5 rounded-xl relative">
-                            <div class="w-full aspect-video rounded-lg mb-1 overflow-hidden relative min-h-[150px] sm:min-h-[200px]">
+                        <div class="project-card-new group">
+                            <div class="project-media-container">
                                 <div class="youtube-thumbnail-container">
                                     <img src="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg" 
                                          data-src-desktop="https://img.youtube.com/vi/MDRP8c0eXSQ/maxresdefault.jpg"
@@ -128,144 +131,152 @@
                                 </div>
                                 <iframe class="absolute top-0 left-0 w-full h-full youtube-embed" src="about:blank" data-src="https://www.youtube.com/embed/MDRP8c0eXSQ?enablejsapi=1&autoplay=0&mute=1&controls=1&loop=1&playlist=MDRP8c0eXSQ" frameborder="0" allowfullscreen style="display:none;"></iframe>
                             </div>
-                            <h3 class="text-lg font-bold mb-1">LOCKDOWN</h3>
-                            <p class="text-gray-400 mb-1 text-sm">Third-person shooter prototype</p>
-                            <div class="flex flex-wrap gap-2 mb-16">
-                                <span class="px-3 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                                    <img src="icons/Unreal Engine.svg" class="w-4 h-4" alt="Unreal"> Unreal
-                                </span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs flex items-center gap-1.5">
-                                    <img src="icons/Windows 8.svg" class="w-4 h-4" alt="Windows"> Windows
-                                </span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Action</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">Shooter</span>
-                                <span class="px-4 py-1.5 bg-gray-200 text-black rounded-full text-xs">3D</span>
+                            <div class="project-content">
+                                <h3 class="project-title">LOCKDOWN</h3>
+                                <p class="project-description">Third-person shooter prototype</p>
+                                <div class="project-actions">
+                                    <a href="https://brillate.itch.io/lockdown" target="_blank" class="project-button">
+                                        <span>Play Game</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <a href="https://brillate.itch.io/lockdown" target="_blank" class="absolute bottom-3 right-3 bg-white/80 hover:bg-white text-black rounded-full px-20 py-1.5 flex items-center justify-center transition-all duration-200 hover:scale-105 text-sm">
-                                Play
-                            </a>
                         </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="https://brillate.itch.io/" target="_blank" class="view-all-projects">
+                            <span>View All Projects</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
             </section>
 
             <!-- Skills Section -->
-            <section id="skills" class="container mx-auto px-8 pt-12 pb-20 section-dark">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl font-bold mb-24 text-center pixel-font">TECHNICAL <span class="accent">SKILLS</span></h2>
-                    <div class="flex flex-wrap justify-center gap-8">
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Unity.png" class="custom-icon" alt="Java">
-                            <h3 class="font-bold text-black">Unity</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/Unreal Engine.png" class="custom-icon" alt="Unreal Engine">
+            <section id="skills" class="skills-section">
+                <div class="skills-container">
+                    <h2 class="section-title">TECHNICAL <span class="accent">SKILLS</span></h2>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Unity.png" alt="Unity">
                             </div>
-                            <h3 class="font-bold text-black">Unreal</h3>
+                            <h3 class="skill-name">Unity</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Godot Engine.png" class="custom-icon" alt="Godot Engine">
-                            <h3 class="font-bold text-black">Godot</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/C%23%20(CSharp).png" class="custom-icon" alt="C# Programming Language">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Unreal Engine.png" alt="Unreal Engine">
                             </div>
-                            <h3 class="font-bold text-black">C#</h3>
+                            <h3 class="skill-name">Unreal</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Java.png" class="custom-icon" alt="Java">
-                            <h3 class="font-bold text-black">Java</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/HTML5.png" class="custom-icon" alt="HTML5">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Godot Engine.png" alt="Godot Engine">
                             </div>
-                            <h3 class="font-bold text-black">HTML</h3>
+                            <h3 class="skill-name">Godot</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/CSS3.png" class="custom-icon" alt="CSS3">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/C%23%20(CSharp).png" alt="C# Programming Language">
                             </div>
-                            <h3 class="font-bold text-black">CSS</h3>
+                            <h3 class="skill-name">C#</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/Visual%20Studio%20Code%20(VS%20Code).png" class="custom-icon" alt="VS Code">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Java.png" alt="Java">
                             </div>
-                            <h3 class="font-bold text-black">VS Code</h3>
+                            <h3 class="skill-name">Java</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/Rider.png" class="custom-icon" alt="Rider">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/HTML5.png" alt="HTML5">
                             </div>
-                            <h3 class="font-bold text-black">Rider</h3>
+                            <h3 class="skill-name">HTML</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Eclipse IDE.png" class="custom-icon" alt="Eclipse IDE">
-                            <h3 class="font-bold text-black">Eclipse IDE</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Git.png" class="custom-icon" alt="Git">
-                            <h3 class="font-bold text-black">Git</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/GitHub.png" class="custom-icon" alt="GitHub">
-                            <h3 class="font-bold text-black">GitHub</h3>
-                        </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/Adobe Photoshop.png" class="custom-icon" alt="Adobe Photoshop">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/CSS3.png" alt="CSS3">
                             </div>
-                            <h3 class="font-bold text-black">Photoshop</h3>
+                            <h3 class="skill-name">CSS</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <div class="mb-3">
-                                <img src="icons/Adobe%20Premiere%20Pro.png" class="custom-icon" alt="Premiere Pro">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Visual%20Studio%20Code%20(VS%20Code).png" alt="VS Code">
                             </div>
-                            <h3 class="font-bold text-black">Premiere Pro</h3>
+                            <h3 class="skill-name">VS Code</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Blender.png" class="custom-icon" alt="Blender">
-                            <h3 class="font-bold text-black">Blender</h3>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Rider.png" alt="Rider">
+                            </div>
+                            <h3 class="skill-name">Rider</h3>
                         </div>
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/Figma.png" class="custom-icon" alt="Figma">
-                            <h3 class="font-bold text-black">Figma</h3>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Eclipse IDE.png" alt="Eclipse IDE">
+                            </div>
+                            <h3 class="skill-name">Eclipse IDE</h3>
                         </div>
-                        <!--
-                        <div class="text-center w-24 bg-white p-2 rounded-lg">
-                            <img src="icons/MySQL.png" class="custom-icon" alt="MySQL">
-                            <h3 class="font-bold text-black">MySQL</h3>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Git.png" alt="Git">
+                            </div>
+                            <h3 class="skill-name">Git</h3>
                         </div>
-                        -->
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/GitHub.png" alt="GitHub">
+                            </div>
+                            <h3 class="skill-name">GitHub</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Adobe Photoshop.png" alt="Adobe Photoshop">
+                            </div>
+                            <h3 class="skill-name">Photoshop</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Adobe%20Premiere%20Pro.png" alt="Premiere Pro">
+                            </div>
+                            <h3 class="skill-name">Premiere Pro</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Blender.png" alt="Blender">
+                            </div>
+                            <h3 class="skill-name">Blender</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <img src="icons/Figma.png" alt="Figma">
+                            </div>
+                            <h3 class="skill-name">Figma</h3>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- About Section -->
-            <section id="about" class="container mx-auto px-6 py-20">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl font-bold mb-24 text-center pixel-font">ABOUT <span class="accent">ME</span></h2>
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="w-full md:w-1/3">
-                            <div class="rounded-full w-48 h-48 mx-auto overflow-hidden border-4 border-white">
-                                <img src="icons/unnamed.jpg" alt="Brandon Pinnick" class="w-full h-full object-cover">
+            <section id="about" class="about-section">
+                <div class="about-container">
+                    <h2 class="section-title">ABOUT <span class="accent">ME</span></h2>
+                    <div class="about-content">
+                        <div class="about-image">
+                            <div class="profile-image-container">
+                                <img src="icons/unnamed.jpg" alt="Brandon Pinnick" class="profile-image">
                             </div>
                         </div>
-                        <div class="w-full md:w-2/3">
-                            <p class="text-lg mb-4">
+                        <div class="about-text">
+                            <p class="about-paragraph">
                                 I'm Brandon Pinnick, a dedicated and passionate game developer with over <span class="accent">2 years</span> of experience creating immersive gaming experiences.
                             </p>
-                            <!-- Add a divider here -->
-                            <div class="h-px w-full bg-gray-700 my-4"></div>
-                            <p class="text-gray-400">
+                            <div class="divider"></div>
+                            <p class="about-paragraph">
                                 I specialize in working with <span class="accent">Unity, Unreal Engine,</span> and <span class="accent">Godot,</span> leveraging my skills in programming, 3D modeling, and level design to bring my unique game worlds to life.
                             </p>
-                            <!-- Add a divider here -->
-                            <div class="h-px w-full bg-gray-700 my-4"></div>
-                            <p class="text-gray-400">
+                            <div class="divider"></div>
+                            <p class="about-paragraph">
                                 My journey is driven by a strong commitment to crafting fun, well-polished gameplay experiences that resonates with players. Whether it's building detailed environments, designing compelling mechanics, or prototyping new ideas, I combine creativity and technical know-how to deliver projects that stand out.
                             </p>
                         </div>
@@ -274,14 +285,23 @@
             </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="container mx-auto px-6 py-20 section-dark">
-                <div class="max-w-2xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold mb-6 pixel-font">GET IN <span class="accent">TOUCH </span><span class="accent">WITH ME</span></h2>
-                    <p class="text-gray-400 mb-8">Interested? Please reach out!</p>
-                    <div class="flex justify-center space-x-6">
-                        <a href="https://www.linkedin.com/in/brandon-pinnick/" target="_blank" class="text-3xl hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Brillate" target="_blank" class="text-3xl hover:text-blue-400"><i class="fab fa-github"></i></a>
-                        <a href="mailto:brandonpinnick0643@gmail.com" class="text-3xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
+            <section id="contact" class="contact-section">
+                <div class="contact-container">
+                    <h2 class="section-title">GET IN <span class="accent">TOUCH</span></h2>
+                    <p class="contact-description">Interested? Please reach out!</p>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/brandon-pinnick/" target="_blank" class="contact-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/Brillate" target="_blank" class="contact-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="mailto:brandonpinnick0643@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -293,8 +313,6 @@
         </div>
     </div>
 
-    <!-- Particle Background -->
-    <canvas id="particles"></canvas>
 
     <!-- Font Loading Detection -->
     <script>
@@ -322,19 +340,13 @@
     <script src="https://www.youtube.com/iframe_api"></script>
     
     <!-- Scripts -->
-    <script src="scripts/particle-system-new.js"></script>
-    <script src="scripts/youtube-optimizer-updated.js"></script>
+    <script src="scripts/optimizer.js"></script>
     <script>
         // Ensure initial state is set before any content loads
         document.body.classList.remove('loaded');
         
         // Reset state on page load
         window.addEventListener('load', function() {
-            if (!window.particleSystem) {
-                console.log('Initializing particle system on window load');
-                window.particleSystem = new ParticleSystem();
-            }
-            
             // Reset initial load screen
             const initialLoad = document.getElementById('initial-load');
             if (initialLoad) {
@@ -348,22 +360,47 @@
                 console.log('Resetting main content');
                 document.body.classList.remove('loaded');
             }
-            
-            // Reset particles
-            const particles = document.getElementById('particles');
-            if (particles) {
-                console.log('Resetting particles');
-                particles.style.opacity = '0';
-            }
 
             // Ensure click handler is bound
             const clickToStart = document.getElementById('click-to-start');
-            if (clickToStart && window.particleSystem) {
+            if (clickToStart) {
                 console.log('Binding click handler to ENTER button');
                 clickToStart.addEventListener('click', function(e) {
                     e.preventDefault();
                     console.log('ENTER button clicked');
-                    window.particleSystem.handleStartClick(e);
+                    
+                    // Start transition animation
+                    if (initialLoad) {
+                        // Add fade-out animation to load screen
+                        initialLoad.classList.add('fade-out');
+                    }
+                    
+                    // Show main content with fade-in animation
+                    if (mainContent) {
+                        mainContent.classList.add('show');
+                        // Force a reflow to ensure the element is visible before animating
+                        mainContent.offsetHeight;
+                        setTimeout(() => {
+                            mainContent.classList.add('fade-in');
+                        }, 50);
+                    }
+                    
+                    // Add loaded class to body
+                    document.body.classList.add('loaded');
+                    
+                    // Remove load screen after animation completes
+                    setTimeout(() => {
+                        if (initialLoad) {
+                            initialLoad.classList.add('hidden');
+                        }
+                    }, 600); // Match the fade-out duration
+                    
+                    // Clean up load screen after transition
+                    setTimeout(() => {
+                        if (initialLoad) {
+                            initialLoad.remove();
+                        }
+                    }, 1000);
                 });
             }
         });
@@ -383,6 +420,161 @@
                     });
                 }
             });
+        });
+
+        // Dynamic typing effect for hero title
+        class TypingEffect {
+            constructor() {
+                this.titles = [
+                    'DESIGNER',
+                    'DEVELOPER', 
+                    'PROGRAMMER',
+                    'CREATOR'
+                ];
+                this.currentIndex = 0; // Start with DESIGNER (index 0)
+                this.isDeleting = false;
+                this.currentText = 'DESIGNER'; // Start with full DESIGNER text
+                this.typeSpeed = 100;
+                this.deleteSpeed = 50;
+                this.pauseTime = 2000;
+                this.suffixElement = document.getElementById('title-suffix');
+                
+                if (this.suffixElement) {
+                    // Start with DESIGNER already displayed, then begin the cycle
+                    setTimeout(() => {
+                        this.isDeleting = true; // Start by deleting DESIGNER
+                        this.startTyping();
+                    }, this.pauseTime); // Wait 2 seconds before starting the cycle
+                }
+            }
+
+            startTyping() {
+                this.type();
+            }
+
+            type() {
+                const currentTitle = this.titles[this.currentIndex];
+                
+                if (this.isDeleting) {
+                    // Deleting characters
+                    this.currentText = currentTitle.substring(0, this.currentText.length - 1);
+                } else {
+                    // Adding characters
+                    this.currentText = currentTitle.substring(0, this.currentText.length + 1);
+                }
+
+                // Update the DOM
+                this.suffixElement.innerHTML = `<span class="accent">${this.currentText}</span>`;
+
+                let typeSpeed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+
+                if (!this.isDeleting && this.currentText === currentTitle) {
+                    // Finished typing, pause before deleting
+                    typeSpeed = this.pauseTime;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.currentText === '') {
+                    // Finished deleting, move to next title
+                    this.isDeleting = false;
+                    this.currentIndex = (this.currentIndex + 1) % this.titles.length;
+                    typeSpeed = 500; // Pause before starting next title
+                }
+
+                setTimeout(() => this.type(), typeSpeed);
+            }
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                new TypingEffect();
+            }, 1000); // Start after 1 second delay
+        });
+
+        // Starfield Animation System
+        class Starfield {
+            constructor() {
+                this.starfield = document.getElementById('starfield');
+                this.stars = [];
+                this.starCount = 200;
+                this.init();
+            }
+
+            init() {
+                if (!this.starfield) return;
+                
+                // Create stars
+                for (let i = 0; i < this.starCount; i++) {
+                    this.createStar();
+                }
+                
+                // Add some drifting stars
+                this.addDriftingStars();
+                
+                // Start animation loop
+                this.animate();
+            }
+
+            createStar() {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size
+                const sizes = ['small', 'medium', 'large'];
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                star.classList.add(size);
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random brightness (some blue stars)
+                if (Math.random() < 0.1) {
+                    star.classList.add('bright');
+                }
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                this.starfield.appendChild(star);
+                this.stars.push(star);
+            }
+
+            addDriftingStars() {
+                // Add some stars that drift slowly
+                for (let i = 0; i < 20; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star small drifting';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 20 + 's';
+                    
+                    this.starfield.appendChild(star);
+                    this.stars.push(star);
+                }
+            }
+
+            animate() {
+                // Subtle parallax effect on mouse move
+                document.addEventListener('mousemove', (e) => {
+                    const mouseX = e.clientX / window.innerWidth;
+                    const mouseY = e.clientY / window.innerHeight;
+                    
+                    this.stars.forEach((star, index) => {
+                        const speed = (index % 3 + 1) * 0.5; // Different speeds for different stars
+                        const x = (mouseX - 0.5) * speed;
+                        const y = (mouseY - 0.5) * speed;
+                        
+                        star.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                });
+            }
+        }
+
+        // Initialize starfield when main content loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                new Starfield();
+            }, 2000); // Start after main content is loaded
         });
     </script>
 </body>
