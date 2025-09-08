@@ -356,8 +356,9 @@ body.loaded #main-content {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    right: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -369,28 +370,32 @@ body.loaded #main-content {
 
 .nav-container {
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 .nav-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
     width: 100%;
     margin: 0;
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
 .nav-links::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
+    width: 0;  /* Remove scrollbar space */
+    height: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .nav-link {
@@ -400,12 +405,13 @@ body.loaded #main-content {
     color: #ffffff;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.8rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
     transition: all 0.2s ease;
     white-space: nowrap;
     flex-shrink: 0;
+    min-width: max-content;
 }
 
 .nav-link:hover {
@@ -428,12 +434,14 @@ body.loaded #main-content {
     .nav-container {
         max-width: 1200px;
         padding: 0 2rem;
+        margin: 0 auto;
     }
     
     .nav-links {
         justify-content: center;
         gap: 1.5rem;
         padding: 0.25rem 0;
+        overflow-x: visible;
     }
     
     .nav-link {
@@ -443,6 +451,23 @@ body.loaded #main-content {
     
     .nav-link i {
         font-size: 0.8rem;
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+    .nav-links {
+        padding: 0.25rem 0.5rem;
+        gap: 0.2rem;
+    }
+    
+    .nav-link {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.7rem;
+    }
+    
+    .nav-link i {
+        display: none;
     }
 }
 
